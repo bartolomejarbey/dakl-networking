@@ -100,8 +100,8 @@ export default function HomePage() {
           nextEventVenue="Kayak Beach Bar · 24.04.26"
           liveUntilDate={LIVE_UNTIL}
         />
-        <PrinciplesSection />
         <FeaturedEventSection event={featuredEvent} soldCount={113} />
+        <PrinciplesSection />
         <CalendarSection events={calendarEvents} />
         <OrganizerSection />
         <BonumSection />
