@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal: #1E8B85;
+  --teal-dark: #16665F;
+  --orange: #E97940;
+  --orange-dark: #C65A22;
+  --cream: #F5EFE2;
+  --ink: #12201F;
+  --ink-soft: #2A3838;
+  --charcoal: #0A1514;
+  --container-max: 1440px;
+  --gutter: 48px;
+}
+
+@layer base {
+  html, body {
+    @apply bg-cream text-ink font-sans text-base antialiased overflow-x-hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .label-sm {
+    @apply font-mono text-[10px] uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .label-md {
+    @apply font-mono text-[13px] font-medium uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --gutter: 22px;
+  }
+}
+
+/* Hero word-by-word stagger animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Big date number for FeaturedEventSection */
+.big-date {
+  font-size: clamp(120px, 19vw, 260px);
+}
+@media (max-width: 600px) {
+  .big-date {
+    font-size: 72px;
+  }
+}
