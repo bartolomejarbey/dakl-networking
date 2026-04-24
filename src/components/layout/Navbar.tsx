@@ -64,10 +64,10 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
                   backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'><path fill='%23E97940' d='M8,34 C60,22 120,18 180,24 C240,28 300,30 360,26 C378,24 390,28 392,36 C394,46 380,52 360,54 C300,58 240,56 180,56 C120,56 60,54 12,50 C4,48 0,44 2,40 C4,36 6,34 8,34 Z' opacity='.82'/><path fill='%23E97940' d='M20,40 C80,32 160,28 240,30 C290,32 340,34 378,32' stroke='%23E97940' stroke-width='2' fill='none' opacity='.3'/></svg>")`,
                 }}
               />
-              Conventus
+              DaKl Networking
             </span>
             <span className="font-mono text-[9px] tracking-[0.24em] uppercase opacity-70">
-              Conventus.cz · Od 2023
+              Networking pro byznys · Praha
             </span>
           </span>
         </Link>

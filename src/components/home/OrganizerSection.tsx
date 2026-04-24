@@ -26,7 +26,7 @@ export function OrganizerSection() {
               </span>
               <Image
                 src="/images/david.jpg"
-                alt="David — organizer of Conventus"
+                alt="David — pořadatel DaKl Networking"
                 fill
                 className="object-cover grayscale contrast-[1.05]"
                 sizes="(max-width: 1024px) 100vw, 42vw"
@@ -50,29 +50,25 @@ export function OrganizerSection() {
             >
               <span className="block">David.</span>
               <span className="block text-cream/55 pl-[0.5em]">
-                Porada Conventus od 2023.
+                Pořádá DaKl Networking.
               </span>
             </h2>
 
             {/* Bio */}
             <p className="text-[18px] leading-[1.55] text-cream/[0.82] max-w-[560px] mb-8">
-              47 akci za 3 roky. 6 850 ucastniku. Provozuju i Bonum Negotium,
-              jednu z nejrychleji rostoucich firem na benefity v CR. Ty dve veci
-              se potkavaji — na Conventu obcas posilam klienty. Pokud delas
-              neco, co me zaujme.
+              DaKl Networking pořádám pro lidi, co něco dělají — vlastníky firem,
+              freelancery, manažery. Bez kafe v zasedačce, bez prezentací. Loď,
+              dobrá kuchyně, dobré pití, lidi, kteří se baví o byznysu, protože
+              je to baví. Kromě DaKl vedu Bonum Negotium — benefity pro firmy,
+              co rostou.
             </p>
-
-            {/* Latin meaning */}
-            <span className="block font-mono text-[12px] text-cream/50 mb-8">
-              Conventus &middot; z latiny: setkani, shromazdeni.
-            </span>
 
             {/* Link */}
             <Link
-              href="/pribeh"
+              href="/david-kladisovsky"
               className="inline-block font-mono text-[13px] uppercase tracking-[0.08em] text-cream border-b border-cream pb-1 hover:text-cream/80 hover:border-cream/80 transition-colors"
             >
-              Cely pribeh &rarr;
+              Celý příběh &rarr;
             </Link>
           </div>
         </div>

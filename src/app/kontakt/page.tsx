@@ -25,21 +25,21 @@ export default function KontaktPage() {
                     <li>
                       <span className="font-mono text-ink-soft text-sm block mb-1">Email</span>
                       <a
-                        href="mailto:david@conventus.cz"
+                        href="mailto:david@daklnetworking.cz"
                         className="font-sans text-ink text-lg hover:text-forest transition-colors"
                       >
-                        david@conventus.cz
+                        david@daklnetworking.cz
                       </a>
                     </li>
                     <li>
                       <span className="font-mono text-ink-soft text-sm block mb-1">Instagram</span>
                       <a
-                        href="https://instagram.com/conventus.cz"
+                        href="https://instagram.com/daklnetworking"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-sans text-ink text-lg hover:text-forest transition-colors"
                       >
-                        @conventus.cz
+                        @daklnetworking
                       </a>
                     </li>
                     <li>
@@ -141,10 +141,10 @@ export default function KontaktPage() {
                 <p className="font-sans text-ink text-base">
                   Napiš nám na{' '}
                   <a
-                    href="mailto:david@conventus.cz"
+                    href="mailto:david@daklnetworking.cz"
                     className="text-forest font-medium hover:underline"
                   >
-                    david@conventus.cz
+                    david@daklnetworking.cz
                   </a>
                 </p>
               </div>

@@ -19,10 +19,10 @@ export default function PodminkyPage() {
                   <h2 className="font-serif text-ink text-2xl mb-4">1. Úvodní ustanovení</h2>
                   <p className="font-serif text-ink-soft text-base leading-relaxed">
                     Tyto obchodní podmínky upravují vzájemná práva a povinnosti mezi provozovatelem
-                    platformy Conventus (dále jen &quot;Pořadatel&quot;) a účastníky akcí (dále jen
+                    platformy DaKl Networking (dále jen &quot;Pořadatel&quot;) a účastníky akcí (dále jen
                     &quot;Účastník&quot;). Pořadatelem je David Kladišovský, IČO: 12345678, se sídlem
                     v Praze, Česká republika. Tyto podmínky se vztahují na všechny akce pořádané pod
-                    značkou Conventus a jsou závazné pro všechny účastníky od okamžiku zakoupení
+                    značkou DaKl Networking a jsou závazné pro všechny účastníky od okamžiku zakoupení
                     vstupenky.
                   </p>
                 </section>
@@ -31,7 +31,7 @@ export default function PodminkyPage() {
                   <h2 className="font-serif text-ink text-2xl mb-4">2. Objednávka a platba</h2>
                   <p className="font-serif text-ink-soft text-base leading-relaxed">
                     Objednávka vstupenky je závazná okamžikem jejího odeslání prostřednictvím
-                    webového formuláře na stránkách conventus.cz. Po odeslání objednávky obdrží
+                    webového formuláře na stránkách daklnetworking.cz. Po odeslání objednávky obdrží
                     Účastník potvrzení na uvedenou emailovou adresu spolu s platebními údaji.
                     Platba musí být provedena do 48 hodin od objednání, a to bankovním převodem
                     nebo prostřednictvím QR kódu. Pokud platba není připsána na účet Pořadatele
@@ -71,7 +71,7 @@ export default function PodminkyPage() {
                   <h2 className="font-serif text-ink text-2xl mb-4">5. Závěrečná ustanovení</h2>
                   <p className="font-serif text-ink-soft text-base leading-relaxed">
                     Tyto obchodní podmínky nabývají účinnosti dnem jejich zveřejnění na webových
-                    stránkách conventus.cz. Pořadatel si vyhrazuje právo tyto podmínky kdykoli
+                    stránkách daklnetworking.cz. Pořadatel si vyhrazuje právo tyto podmínky kdykoli
                     změnit. O změnách bude Pořadatel informovat prostřednictvím webových stránek.
                     Pro objednávky učiněné před změnou podmínek platí podmínky platné v okamžiku
                     odeslání objednávky. Vztahy neupravené těmito podmínkami se řídí právním řádem

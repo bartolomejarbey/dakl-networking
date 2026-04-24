@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
           orderId: order.id,
           amount: totalCzk,
           email: data.email,
-          label: `Conventus ${event.name}`,
+          label: `DaKl Networking ${event.name}`,
         })
 
         // Update order with Comgate transaction ID

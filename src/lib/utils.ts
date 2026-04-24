@@ -65,11 +65,11 @@ export function generateICS(event: {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Conventus//Event//CS',
+    'PRODID:-//DaKl Networking//Event//CS',
     'BEGIN:VEVENT',
     `DTSTART:${formatICSDate(event.starts_at)}`,
     `DTEND:${formatICSDate(event.ends_at)}`,
-    `SUMMARY:Conventus — ${event.name}`,
+    `SUMMARY:DaKl Networking — ${event.name}`,
     location ? `LOCATION:${location}` : '',
     event.short_description ? `DESCRIPTION:${event.short_description.replace(/\n/g, '\\n')}` : '',
     'END:VEVENT',

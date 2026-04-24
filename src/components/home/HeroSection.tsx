@@ -12,9 +12,10 @@ interface HeroSectionProps {
   ctaLabel?: string
   nextEventDate?: string
   nextEventVenue?: string
+  liveUntilDate?: string
 }
 
-const headlineLines = ['Zajímaví lidi.', 'Jedna loď.', 'Jeden večer.']
+const headlineLines = ['Zajímaví lidé.', 'Jedna loď.', 'Jeden večer.']
 
 const contactItems = [
   {
@@ -25,9 +26,9 @@ const contactItems = [
   },
   {
     label: 'NAPIŠTE',
-    value: 'david@conventus.cz',
+    value: 'david@daklnetworking.cz',
     icon: Mail,
-    href: 'mailto:david@conventus.cz',
+    href: 'mailto:david@daklnetworking.cz',
   },
   {
     label: 'KDE NÁS NAJDETE',
@@ -39,14 +40,14 @@ const contactItems = [
 
 const PRAGUE_IMAGE =
   'https://images.unsplash.com/photo-1541849546-216549ae216d?w=2400&q=85'
-const PORTRAIT_IMAGE =
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=85'
+const PORTRAIT_IMAGE = '/images/david.jpg'
 
 export function HeroSection({
   ctaHref = '#',
   ctaLabel = 'PŘIHLÁSIT NA 24.4. →',
   nextEventDate,
   nextEventVenue,
+  liveUntilDate,
 }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest-deep">
@@ -87,7 +88,7 @@ export function HeroSection({
             src={PORTRAIT_IMAGE}
             alt="David Kladišovský"
             fill
-            className="object-cover object-top"
+            className="object-cover object-top grayscale contrast-[1.05]"
             priority
             sizes="42vw"
           />
@@ -182,7 +183,7 @@ export function HeroSection({
                 src={PORTRAIT_IMAGE}
                 alt="David Kladišovský"
                 fill
-                className="object-cover object-top"
+                className="object-cover object-top grayscale contrast-[1.05]"
                 sizes="(max-width: 1024px) 80vw, 0px"
               />
               <div className="absolute inset-0 bg-forest-deep/[0.15]" />
@@ -234,6 +235,7 @@ export function HeroSection({
         >
           <CountdownTimer
             targetDate={nextEventDate}
+            liveUntilDate={liveUntilDate}
             venueName={nextEventVenue}
           />
         </motion.div>

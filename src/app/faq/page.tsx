@@ -73,7 +73,7 @@ const faqData: FAQCategory[] = [
       {
         question: 'Nedostal/a jsem potvrzovací email',
         answer:
-          'Zkontroluj prosím složku spam/nevyžádaná pošta. Pokud tam email také není, napiš nám na david@conventus.cz a my ti potvrzení pošleme znovu. Ujisti se, že jsi zadal/a správnou emailovou adresu při registraci.',
+          'Zkontroluj prosím složku spam/nevyžádaná pošta. Pokud tam email také není, napiš nám na david@daklnetworking.cz a my ti potvrzení pošleme znovu. Ujisti se, že jsi zadal/a správnou emailovou adresu při registraci.',
       },
     ],
   },

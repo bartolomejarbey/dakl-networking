@@ -31,18 +31,18 @@ export function EventCTA({ event, soldCount = 0 }: EventCTAProps) {
         <p
           className="font-serif text-cream leading-[1.1] mb-6 text-[clamp(32px,4vw,52px)]"
         >
-          Prihlasit za {formatCZK(event.price_czk)} &rarr;
+          Přihlásit za {formatCZK(event.price_czk)} &rarr;
         </p>
 
         {/* Sub text */}
         <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-cream/70 max-w-[520px] mx-auto mb-10 leading-relaxed">
-          Platba okamzite pres QR nebo prevodem. Faktura na firmu automaticky.
+          Platba okamžitě přes QR nebo převodem. Faktura na firmu automaticky.
         </p>
 
         {/* Availability counter */}
         <div className="flex items-center justify-center gap-3 mb-8">
           <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-cream/70">
-            Zbyva {available} mist z {event.capacity}
+            Zbývá {available} míst z {event.capacity}
           </p>
           <div className="relative w-[60px] h-[3px] bg-cream/20 rounded-full overflow-hidden">
             <div
@@ -57,7 +57,7 @@ export function EventCTA({ event, soldCount = 0 }: EventCTAProps) {
           href={`/akce/${event.slug}/prihlaska`}
           className="block w-full max-w-[480px] mx-auto bg-orange hover:bg-orange-dark text-cream font-mono text-[13px] uppercase tracking-[0.12em] text-center py-4 px-6 rounded-[3px] transition-colors duration-300"
         >
-          Prihlasit a zaplatit &rarr;
+          Přihlásit a zaplatit &rarr;
         </Link>
       </Container>
     </section>

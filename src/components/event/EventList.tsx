@@ -18,18 +18,18 @@ function getVenueLine(event: Event): string {
 }
 
 const typeFilters: { value: FilterType; label: string }[] = [
-  { value: 'all', label: 'Vse' },
-  { value: 'lod', label: 'Lod' },
-  { value: 'vino', label: 'Vino' },
-  { value: 'more', label: 'More' },
-  { value: 'garden', label: 'Letni' },
-  { value: 'jine', label: 'Jine' },
+  { value: 'all', label: 'Vše' },
+  { value: 'lod', label: 'Loď' },
+  { value: 'vino', label: 'Víno' },
+  { value: 'more', label: 'Moře' },
+  { value: 'garden', label: 'Letní' },
+  { value: 'jine', label: 'Jiné' },
 ]
 
 const statusFilters: { value: FilterStatus; label: string }[] = [
-  { value: 'all', label: 'Vse' },
-  { value: 'upcoming', label: 'Nadchazejici' },
-  { value: 'past', label: 'Probehle' },
+  { value: 'all', label: 'Vše' },
+  { value: 'upcoming', label: 'Nadcházející' },
+  { value: 'past', label: 'Proběhlé' },
 ]
 
 export function EventList({ events }: EventListProps) {
@@ -97,7 +97,7 @@ export function EventList({ events }: EventListProps) {
         {filtered.length === 0 && (
           <div className="py-16 text-center">
             <p className="font-mono text-[13px] uppercase tracking-[0.12em] text-ink-soft">
-              Zadne akce neodpovidaji filtru.
+              Žádné akce neodpovídají filtru.
             </p>
           </div>
         )}

@@ -26,8 +26,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Conventus — Setkání podnikatelů, co něco dělají',
-    template: '%s | Conventus',
+    default: 'DaKl Networking — Setkání podnikatelů, co něco dělají',
+    template: '%s | DaKl Networking',
   },
   description:
     'Prémiové networking akce pro podnikatele. Kurátorský výběr hostů, all-inclusive cena, každý měsíc jiný formát.',

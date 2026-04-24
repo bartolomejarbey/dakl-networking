@@ -8,7 +8,7 @@ export function BonumSection() {
           {/* Left — Label (col 1-3) */}
           <div className="lg:col-span-3">
             <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-orange">
-              — 08 / Spoluprace
+              — Spolupráce
             </span>
           </div>
 
@@ -23,16 +23,16 @@ export function BonumSection() {
             <h2
               className="font-serif text-ink leading-[1.05] mb-8 text-[clamp(32px,4vw,52px)]"
             >
-              <span className="block">Poskytujeme benefity firmam,</span>
+              <span className="block">Poskytujeme benefity firmám,</span>
               <span className="block md:pl-[80px]">
-                ktere rostou nejrychleji v CR.
+                které rostou nejrychleji v ČR.
               </span>
             </h2>
 
             {/* Description */}
             <p className="text-[18px] leading-[1.55] text-ink-soft max-w-[640px] mb-10">
-              Benefity, poukazy, stravenky, wellness. Kdyz na networkingu reknes,
-              ze mas 50+ zamestnancu, mozna ti poslu nabidku.
+              Benefity, poukazy, stravenky, wellness. Když na networkingu řekneš,
+              že máš 50+ zaměstnanců, možná ti pošlu nabídku.
             </p>
 
             {/* CTA link */}

@@ -17,7 +17,7 @@ export default function DavidKladisovskyPage() {
                   David Kladišovský
                 </h1>
                 <p className="font-mono text-cream/70 text-sm tracking-wide">
-                  Pořadatel Conventus · Zakladatel Bonum Negotium
+                  Pořadatel DaKl Networking · Zakladatel Bonum Negotium
                 </p>
               </div>
               <div className="md:col-span-5">
@@ -39,23 +39,21 @@ export default function DavidKladisovskyPage() {
         <section className="bg-cream pt-[100px] pb-[80px] max-md:pt-[80px] max-md:pb-[60px]">
           <Container>
             <div className="max-w-[720px]">
-              <h2 className="font-serif text-ink text-3xl mb-8">Proč dělám Conventus</h2>
+              <h2 className="font-serif text-ink text-3xl mb-8">Proč dělám DaKl Networking</h2>
               <div className="space-y-6 font-sans text-ink text-lg leading-relaxed">
                 <p>
-                  Conventus jsem založil v roce 2023, protože jsem věřil, že čeští podnikatelé
-                  potřebují prostor pro setkávání, který není ani formální konference, ani random
-                  networking. Chtěl jsem vytvořit místo, kde se lidé potkávají přirozeně, v
-                  příjemném prostředí a s jasným účelem.
+                  DaKl Networking pořádám pro lidi, kteří něco dělají — vlastníky firem,
+                  freelancery, manažery, co si jednou za čas potřebují vyrazit z kanceláře
+                  a potkat se s někým, s kým dává smysl mluvit o byznysu.
                 </p>
                 <p>
-                  Od té doby jsme uspořádali 47 akcí a propojili přes 6 850 účastníků. Každá akce
-                  je jiná — od komorních dinner pro 12 lidí po letní párty pro 200. Ale vždy
-                  platí jedno: kvalita lidí a kvalita zážitku.
+                  Bez prezentací. Bez networkingových her. Bez kafe v zasedačce. Místo toho:
+                  loď na Vltavě, dobrá kuchyně, pití, hudba, pár hodin, kdy nikam nemusíš
+                  a přesto odjedeš s kontakty, co ti za rok vydělají.
                 </p>
                 <p>
-                  Věřím, že nejlepší byznysové příležitosti vznikají tam, kde se lidé cítí
-                  uvolněně a otevřeně. Proto investuju tolik energie do kurátorství každé akce —
-                  od výběru místa přes dramaturgii programu po osobní pozvánky.
+                  Každá akce je jiná — od degustací vína přes mořské plody po letní párty
+                  na lodi. Místo si filtruji sám. Kvalita lidí je to, co DaKl dělá DaKl.
                 </p>
               </div>
             </div>
@@ -69,23 +67,23 @@ export default function DavidKladisovskyPage() {
               <h2 className="font-serif text-ink text-3xl mb-8">Bonum Negotium</h2>
               <div className="space-y-6 font-sans text-ink text-lg leading-relaxed">
                 <p>
-                  Vedle Conventus vedu Bonum Negotium — poradenskou firmu zaměřenou na růst
-                  malých a středních podniků. Pomáháme podnikatelům s obchodní strategií,
-                  marketingem a budováním značky.
+                  Vedle DaKl vedu Bonum Negotium — firmu, která dodává benefity,
+                  stravenky a poukazy firmám, co rostou. S rostoucí firmou roste
+                  i potřeba se o lidi postarat a ne přijít o ně do měsíce.
                 </p>
                 <p>
-                  Conventus a Bonum Negotium se vzájemně doplňují. Akce mi umožňují být v
-                  kontaktu s podnikatelskou komunitou a porozumět jejím potřebám. A díky
-                  poradenské praxi vím, co podnikatelé skutečně řeší.
+                  DaKl a Bonum Negotium se potkávají. Na akcích jsou často lidi,
+                  kterým se hodí benefitový partner. Pokud děláš něco, co mě zaujme,
+                  možná ti pošlu nabídku.
                 </p>
               </div>
               <a
-                href="https://bnservices.cz"
+                href="https://bonumnegotium.cz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center mt-8 font-mono text-forest text-sm hover:underline"
               >
-                → bnservices.cz
+                → bonumnegotium.cz
               </a>
             </div>
           </Container>
@@ -99,10 +97,10 @@ export default function DavidKladisovskyPage() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="mailto:david@conventus.cz"
+                    href="mailto:david@daklnetworking.cz"
                     className="font-mono text-ink text-base hover:text-forest transition-colors"
                   >
-                    david@conventus.cz
+                    david@daklnetworking.cz
                   </a>
                 </li>
                 <li>
@@ -117,7 +115,7 @@ export default function DavidKladisovskyPage() {
                 </li>
                 <li>
                   <a
-                    href="https://instagram.com/conventus.cz"
+                    href="https://instagram.com/daklnetworking"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-ink text-base hover:text-forest transition-colors"

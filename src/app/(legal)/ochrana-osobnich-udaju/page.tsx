@@ -19,8 +19,8 @@ export default function OchranaOsobnichUdajuPage() {
                   <h2 className="font-serif text-ink text-2xl mb-4">1. Správce údajů</h2>
                   <p className="font-serif text-ink-soft text-base leading-relaxed">
                     Správcem osobních údajů je David Kladišovský, IČO: 12345678, se sídlem v Praze,
-                    Česká republika, provozovatel platformy Conventus (dále jen &quot;Správce&quot;).
-                    Správce lze kontaktovat na emailové adrese david@conventus.cz. Správce nejmenoval
+                    Česká republika, provozovatel platformy DaKl Networking (dále jen &quot;Správce&quot;).
+                    Správce lze kontaktovat na emailové adrese david@daklnetworking.cz. Správce nejmenoval
                     pověřence pro ochranu osobních údajů, neboť to není s ohledem na rozsah
                     zpracování vyžadováno.
                   </p>
@@ -30,7 +30,7 @@ export default function OchranaOsobnichUdajuPage() {
                   <h2 className="font-serif text-ink text-2xl mb-4">2. Účel zpracování</h2>
                   <p className="font-serif text-ink-soft text-base leading-relaxed">
                     Osobní údaje jsou zpracovávány za účelem: registrace a správy účasti na akcích
-                    pořádaných pod značkou Conventus; vystavení daňových dokladů a plnění účetních
+                    pořádaných pod značkou DaKl Networking; vystavení daňových dokladů a plnění účetních
                     povinností; zasílání informací o nadcházejících akcích a novinkách (pouze se
                     souhlasem); komunikace s účastníky ohledně organizačních záležitostí; zlepšování
                     kvality poskytovaných služeb. Zpracováváme následující kategorie údajů: jméno
@@ -83,7 +83,7 @@ export default function OchranaOsobnichUdajuPage() {
                     právo na omezení zpracování; právo na přenositelnost údajů; právo vznést námitku
                     proti zpracování; právo odvolat souhlas se zpracováním; právo podat stížnost
                     u Úřadu pro ochranu osobních údajů (www.uoou.cz). Pro uplatnění svých práv
-                    nás kontaktujte na david@conventus.cz. Na vaši žádost odpovíme bez zbytečného
+                    nás kontaktujte na david@daklnetworking.cz. Na vaši žádost odpovíme bez zbytečného
                     odkladu, nejpozději do 30 dnů.
                   </p>
                 </section>

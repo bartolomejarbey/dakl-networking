@@ -13,11 +13,11 @@ interface FeaturedEventSectionProps {
 }
 
 const DEFAULT_PROGRAM = [
-  { number: '01', title: 'Jidlo a piti.', description: 'Alko i nealko. Vsechno v cene.' },
-  { number: '02', title: 'DJs po celou dobu.', description: 'Od chill odpolednich beatu po tanecni vecer.' },
-  { number: '03', title: 'Beachvolejbal.', description: 'Kurt u lodi, hraci rotuji.' },
-  { number: '04', title: 'Paddleboardy a kajaky.', description: 'Pujceni zdarma.' },
-  { number: '05', title: 'Motorovy clun.', description: 'Pokud ti to bude malo.' },
+  { number: '01', title: 'Jídlo a pití.', description: 'Alko i nealko. Všechno v ceně.' },
+  { number: '02', title: 'DJs po celou dobu.', description: 'Od chill odpoledních beatů po taneční večer.' },
+  { number: '03', title: 'Beachvolejbal.', description: 'Kurt u lodi, hráči rotují.' },
+  { number: '04', title: 'Paddleboardy a kajaky.', description: 'Půjčení zdarma.' },
+  { number: '05', title: 'Motorový člun.', description: 'Pokud ti to bude málo.' },
 ]
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80'
@@ -72,7 +72,7 @@ export function FeaturedEventSection({ event, soldCount = 0 }: FeaturedEventSect
         >
           {/* Section label */}
           <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-orange mb-8">
-            &mdash; 03 / Nejblizsi akce
+            &mdash; Nejbližší akce
           </p>
 
           {/* Big date */}
@@ -137,7 +137,7 @@ export function FeaturedEventSection({ event, soldCount = 0 }: FeaturedEventSect
           >
             {/* Heading */}
             <h3 className="font-serif text-cream text-[28px] lg:text-[32px] leading-[1.15] mb-8">
-              Co te ceka na palube.
+              Co tě čeká na palubě.
             </h3>
 
             {/* Numbered list */}
@@ -168,7 +168,7 @@ export function FeaturedEventSection({ event, soldCount = 0 }: FeaturedEventSect
                 {formatCZK(event.price_czk)}
               </p>
               <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-cream/70 mt-3">
-                Za cely vecer &middot; vse v cene &middot; bez DPH
+                Za celý večer &middot; vše v ceně &middot; bez DPH
               </p>
             </div>
 
@@ -177,13 +177,13 @@ export function FeaturedEventSection({ event, soldCount = 0 }: FeaturedEventSect
               href={`/akce/${event.slug}/prihlaska`}
               className="block w-full bg-orange hover:bg-orange-dark text-cream font-mono text-[13px] uppercase tracking-[0.12em] text-center py-4 px-6 rounded-[3px] transition-colors duration-300 mb-5"
             >
-              Zarezervovat misto &rarr;
+              Zarezervovat místo &rarr;
             </Link>
 
             {/* Remaining spots */}
             <div className="flex items-center gap-3">
               <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-cream/70">
-                Zbyva {available} mist z {event.capacity}
+                Zbývá {available} míst z {event.capacity}
               </p>
               <div className="relative w-[60px] h-[3px] bg-cream/20 rounded-full overflow-hidden">
                 <div

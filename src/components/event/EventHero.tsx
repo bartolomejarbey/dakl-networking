@@ -86,20 +86,20 @@ export function EventHero({ event, soldCount = 0 }: EventHeroProps) {
             href={`/akce/${event.slug}/prihlaska`}
             className="inline-flex items-center gap-2.5 bg-orange hover:bg-orange-dark text-cream font-mono text-[13px] uppercase tracking-[0.12em] font-medium px-[28px] py-[15px] rounded-[3px] transition-colors duration-300"
           >
-            Prihlasit a zaplatit &rarr;
+            Přihlásit a zaplatit &rarr;
           </Link>
           <button
             onClick={handleDownloadICS}
             className="font-mono text-[12px] uppercase tracking-[0.12em] text-cream/70 hover:text-cream transition-colors underline underline-offset-4 decoration-cream/30"
           >
-            Stahnout do kalendare
+            Stáhnout do kalendáře
           </button>
         </div>
 
         {/* Availability counter */}
         <div className="flex items-center gap-3">
           <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-cream/70">
-            Zbyva {available} mist z {event.capacity}
+            Zbývá {available} míst z {event.capacity}
           </p>
           <div className="relative w-[60px] h-[3px] bg-cream/20 rounded-full overflow-hidden">
             <div

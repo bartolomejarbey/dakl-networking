@@ -20,14 +20,14 @@ export function CalendarSection({ events }: CalendarSectionProps) {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16 lg:mb-20 gap-6">
           <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-forest shrink-0">
-            &mdash; 04 / Kalendar
+            &mdash; Kalendář
           </p>
           <div className="lg:text-right">
             <h2 className="font-serif text-ink text-[clamp(36px,4.5vw,56px)] leading-[1.1]">
-              Co se deje. Co bylo.
+              Co se děje. Co bylo.
             </h2>
             <h2 className="font-serif text-ink text-[clamp(36px,4.5vw,56px)] leading-[1.1] lg:pl-[80px]">
-              Kam prijdes.
+              Kam přijdeš.
             </h2>
           </div>
         </div>
@@ -156,7 +156,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
             href="/akce"
             className="inline-block font-mono text-[13px] uppercase tracking-[0.12em] text-ink border-b-2 border-orange pb-1 hover:text-orange transition-colors duration-300"
           >
-            Zobrazit vsechny akce &rarr;
+            Zobrazit všechny akce &rarr;
           </Link>
         </div>
       </Container>

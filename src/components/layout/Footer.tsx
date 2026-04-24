@@ -8,12 +8,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6">
           {/* Brand */}
           <div>
-            <div className="font-serif italic text-[28px]">Conventus</div>
+            <div className="font-serif italic text-[28px]">DaKl Networking</div>
             <div className="font-mono text-[10px] tracking-[0.2em] uppercase mt-2.5">
-              Conventus.cz · Setkání · Od 2023
+              Networking pro byznys · Praha
             </div>
             <div className="mt-[18px] text-[13px] leading-relaxed text-cream/[0.55] max-w-[260px]">
-              Z latiny: setkání, shromáždění. Akce pro podnikatele, co už něco dělají.
+              Akce pro podnikatele, co už něco dělají. Loď, jídlo, pití, lidi, co dávají smysl.
             </div>
           </div>
 
@@ -77,12 +77,12 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 font-mono text-[13px] tracking-[0.04em] text-cream/[0.65]">
               <li>
-                <a href="mailto:david@conventus.cz" className="hover:text-cream transition-colors">
-                  david@conventus.cz
+                <a href="mailto:david@daklnetworking.cz" className="hover:text-cream transition-colors">
+                  david@daklnetworking.cz
                 </a>
               </li>
               <li>
-                <span className="text-cream/40">conventus.cz</span>
+                <span className="text-cream/40">daklnetworking.cz</span>
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-16 pt-6 border-t border-cream/[0.12] text-[12px] text-cream/[0.35] font-mono tracking-[0.04em] gap-2">
-          <span>© 2026 Conventus</span>
+          <span>© 2026 DaKl Networking</span>
           <span>Made in Prague</span>
         </div>
       </Container>

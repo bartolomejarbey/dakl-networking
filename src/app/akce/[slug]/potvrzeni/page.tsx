@@ -60,7 +60,7 @@ export default function PotvrzeniPage({ params, searchParams }: PageProps) {
                 </p>
                 <div className="flex flex-col gap-3">
                   <a
-                    href="https://instagram.com/conventus.cz"
+                    href="https://instagram.com/daklnetworking"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-forest text-sm hover:underline"
@@ -68,7 +68,7 @@ export default function PotvrzeniPage({ params, searchParams }: PageProps) {
                     → Instagram
                   </a>
                   <a
-                    href="https://linkedin.com/company/conventus"
+                    href="https://linkedin.com/company/daklnetworking"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-forest text-sm hover:underline"

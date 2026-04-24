@@ -22,7 +22,7 @@ export interface StepProps {
 
 const STEP_LABELS = ['Vstupenky', 'Kontakt', 'Fakturace', 'Doplňky', 'Souhrn', 'Platba']
 
-const STORAGE_KEY_PREFIX = 'conventus_checkout_'
+const STORAGE_KEY_PREFIX = 'dakl_checkout_'
 
 function StepIndicator({ currentStep }: { currentStep: number }) {
   return (
@@ -118,11 +118,11 @@ function StepContact({ form }: StepProps) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-serif text-2xl text-ink">Kontaktni udaje</h2>
+      <h2 className="font-serif text-2xl text-ink">Kontaktní údaje</h2>
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jmeno</label>
+          <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jméno</label>
           <input
             {...register('firstName')}
             className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
@@ -131,11 +131,11 @@ function StepContact({ form }: StepProps) {
           {errors.firstName && <p className="text-[11px] text-orange mt-1">{errors.firstName.message}</p>}
         </div>
         <div>
-          <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Prijmeni</label>
+          <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Příjmení</label>
           <input
             {...register('lastName')}
             className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
-            placeholder="Novak"
+            placeholder="Novák"
           />
           {errors.lastName && <p className="text-[11px] text-orange mt-1">{errors.lastName.message}</p>}
         </div>
@@ -153,7 +153,7 @@ function StepContact({ form }: StepProps) {
       </div>
 
       <div>
-        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Telefon (nepovinne)</label>
+        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Telefon (nepovinné)</label>
         <input
           {...register('phone')}
           type="tel"
@@ -171,7 +171,7 @@ function StepBilling({ form }: StepProps) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-serif text-2xl text-ink">Fakturacni udaje</h2>
+      <h2 className="font-serif text-2xl text-ink">Fakturační údaje</h2>
 
       <div className="flex gap-3">
         <button
@@ -183,7 +183,7 @@ function StepBilling({ form }: StepProps) {
               : 'border-ink/15 text-ink-soft hover:border-ink/30'
           }`}
         >
-          Fyzicka osoba
+          Fyzická osoba
         </button>
         <button
           type="button"
@@ -201,7 +201,7 @@ function StepBilling({ form }: StepProps) {
       {billingType === 'company' && (
         <div className="space-y-3">
           <div>
-            <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Nazev firmy</label>
+            <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Název firmy</label>
             <input
               {...register('companyName')}
               className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
@@ -209,14 +209,14 @@ function StepBilling({ form }: StepProps) {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">ICO</label>
+              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">IČO</label>
               <input
                 {...register('ico')}
                 className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">DIC</label>
+              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">DIČ</label>
               <input
                 {...register('dic')}
                 className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
@@ -232,14 +232,14 @@ function StepBilling({ form }: StepProps) {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Mesto</label>
+              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Město</label>
               <input
                 {...register('billingCity')}
                 className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">PSC</label>
+              <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">PSČ</label>
               <input
                 {...register('billingZip')}
                 className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
@@ -259,34 +259,34 @@ function StepExtras({ form }: StepProps) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-serif text-2xl text-ink">Doplnkove informace</h2>
-      <p className="text-sm text-ink-soft">Nic z toho neni povinne.</p>
+      <h2 className="font-serif text-2xl text-ink">Doplňkové informace</h2>
+      <p className="text-sm text-ink-soft">Nic z toho není povinné.</p>
 
       <div>
-        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Dietni omezeni</label>
+        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Dietní omezení</label>
         <input
           {...register('dietaryRestrictions')}
           className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
-          placeholder="Vegetarian, bez lepku..."
+          placeholder="Vegetarián, bez lepku..."
         />
       </div>
 
       <div>
-        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jak ses o nas dozvedel/a?</label>
+        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jak ses o nás dozvěděl/a?</label>
         <input
           {...register('source')}
           className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
-          placeholder="Instagram, doporuceni..."
+          placeholder="Instagram, doporučení..."
         />
       </div>
 
       <div>
-        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Poznamka</label>
+        <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Poznámka</label>
         <textarea
           {...register('customerNote')}
           rows={3}
           className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors resize-none"
-          placeholder="Cokoliv, co bychom meli vedet..."
+          placeholder="Cokoliv, co bychom měli vědět..."
         />
       </div>
     </div>
@@ -299,7 +299,7 @@ function StepReview({ form, event }: StepProps) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-serif text-2xl text-ink">Souhrn objednavky</h2>
+      <h2 className="font-serif text-2xl text-ink">Souhrn objednávky</h2>
 
       <div className="space-y-3 p-4 bg-ink/[0.02] border border-ink/10 rounded-[2px]">
         <div className="flex justify-between text-sm">
@@ -311,7 +311,7 @@ function StepReview({ form, event }: StepProps) {
           <span className="text-ink">{formatDateDot(event.starts_at)}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-ink-soft">Pocet vstupenek</span>
+          <span className="text-ink-soft">Počet vstupenek</span>
           <span className="text-ink">{values.quantity}x</span>
         </div>
         <div className="flex justify-between text-sm">
@@ -337,8 +337,8 @@ function StepReview({ form, event }: StepProps) {
             className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
-            Souhlasim s{' '}
-            <a href="/podminky" className="text-forest underline">obchodnimi podminkami</a>
+            Souhlasím s{' '}
+            <a href="/podminky" className="text-forest underline">obchodními podmínkami</a>
           </span>
         </label>
         {errors.agreedTerms && <p className="text-[11px] text-orange ml-6">{errors.agreedTerms.message}</p>}
@@ -350,8 +350,8 @@ function StepReview({ form, event }: StepProps) {
             className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
-            Souhlasim se{' '}
-            <a href="/gdpr" className="text-forest underline">zpracovanim osobnich udaju</a>
+            Souhlasím se{' '}
+            <a href="/ochrana-osobnich-udaju" className="text-forest underline">zpracováním osobních údajů</a>
           </span>
         </label>
         {errors.agreedGdpr && <p className="text-[11px] text-orange ml-6">{errors.agreedGdpr.message}</p>}
@@ -363,7 +363,7 @@ function StepReview({ form, event }: StepProps) {
             className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
-            Chci odebirat novinky o dalsich akcich
+            Chci odebírat novinky o dalších akcích
           </span>
         </label>
       </div>
@@ -377,7 +377,7 @@ function StepPayment({ form }: StepProps) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-serif text-2xl text-ink">Zpusob platby</h2>
+      <h2 className="font-serif text-2xl text-ink">Způsob platby</h2>
 
       <div className="space-y-3">
         <button
@@ -390,7 +390,7 @@ function StepPayment({ form }: StepProps) {
           }`}
         >
           <div className="font-mono text-sm text-ink font-medium">Platba kartou / QR</div>
-          <div className="text-[12px] text-ink-soft mt-0.5">Okamzite zpracovani pres Comgate</div>
+          <div className="text-[12px] text-ink-soft mt-0.5">Okamžité zpracování přes Comgate</div>
         </button>
 
         <button
@@ -402,7 +402,7 @@ function StepPayment({ form }: StepProps) {
               : 'border-ink/15 hover:border-ink/30'
           }`}
         >
-          <div className="font-mono text-sm text-ink font-medium">Bankovni prevod</div>
+          <div className="font-mono text-sm text-ink font-medium">Bankovní převod</div>
           <div className="text-[12px] text-ink-soft mt-0.5">Proforma faktura na email, splatnost 3 dny</div>
         </button>
       </div>
@@ -621,7 +621,7 @@ export function CheckoutWizard({ event, soldCount }: CheckoutWizardProps) {
                 onClick={handleBack}
                 className="font-mono text-xs tracking-wider uppercase text-ink-soft hover:text-ink transition-colors"
               >
-                Zpet
+                Zpět
               </button>
             ) : (
               <div />
@@ -633,7 +633,7 @@ export function CheckoutWizard({ event, soldCount }: CheckoutWizardProps) {
                 onClick={handleNext}
                 className="inline-flex items-center gap-2.5 bg-orange text-cream font-mono text-xs tracking-[0.08em] uppercase font-medium px-[22px] py-[13px] rounded-[2px] transition-colors hover:bg-orange-dark"
               >
-                Pokracovat
+                Pokračovat
                 <span className="inline-block">→</span>
               </button>
             ) : (
@@ -643,7 +643,7 @@ export function CheckoutWizard({ event, soldCount }: CheckoutWizardProps) {
                 disabled={isSubmitting}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-orange text-cream font-mono text-xs tracking-[0.08em] uppercase font-medium px-[22px] py-[13px] rounded-[2px] transition-colors hover:bg-orange-dark disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'Zpracovavam...' : `Zaplatit ${formatCZK(total)}`}
+                {isSubmitting ? 'Zpracovávám...' : `Zaplatit ${formatCZK(total)}`}
                 {!isSubmitting && <span className="inline-block">→</span>}
               </button>
             )}
