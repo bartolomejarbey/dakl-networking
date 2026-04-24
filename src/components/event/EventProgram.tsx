@@ -23,8 +23,8 @@ export function EventProgram({ program }: EventProgramProps) {
                 key={i}
                 className={cn(
                   'grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr] items-start py-5',
-                  'border-t border-teal/[0.15]',
-                  i === program.length - 1 && 'border-b border-teal/[0.15]'
+                  'border-t border-forest/[0.15]',
+                  i === program.length - 1 && 'border-b border-forest/[0.15]'
                 )}
               >
                 <span className="font-mono text-[14px] text-orange tabular-nums pt-0.5">

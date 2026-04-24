@@ -38,7 +38,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
             {index > 0 && (
               <div
                 className={`absolute top-3 right-1/2 w-full h-[2px] -translate-y-1/2 ${
-                  step <= currentStep ? 'bg-teal' : 'bg-ink/10'
+                  step <= currentStep ? 'bg-forest' : 'bg-ink/10'
                 }`}
               />
             )}
@@ -48,7 +48,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
                 isActive
                   ? 'bg-orange text-cream'
                   : isCompleted
-                  ? 'bg-teal text-cream'
+                  ? 'bg-forest text-cream'
                   : 'bg-ink/10 text-ink/40'
               }`}
             >
@@ -63,7 +63,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
             {/* Label */}
             <span
               className={`mt-1.5 text-[10px] font-mono tracking-wider uppercase ${
-                isActive ? 'text-orange' : isCompleted ? 'text-teal' : 'text-ink/30'
+                isActive ? 'text-orange' : isCompleted ? 'text-forest' : 'text-ink/30'
               }`}
             >
               {label}
@@ -125,7 +125,7 @@ function StepContact({ form }: StepProps) {
           <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jmeno</label>
           <input
             {...register('firstName')}
-            className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+            className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
             placeholder="David"
           />
           {errors.firstName && <p className="text-[11px] text-orange mt-1">{errors.firstName.message}</p>}
@@ -134,7 +134,7 @@ function StepContact({ form }: StepProps) {
           <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Prijmeni</label>
           <input
             {...register('lastName')}
-            className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+            className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
             placeholder="Novak"
           />
           {errors.lastName && <p className="text-[11px] text-orange mt-1">{errors.lastName.message}</p>}
@@ -146,7 +146,7 @@ function StepContact({ form }: StepProps) {
         <input
           {...register('email')}
           type="email"
-          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
           placeholder="david@email.cz"
         />
         {errors.email && <p className="text-[11px] text-orange mt-1">{errors.email.message}</p>}
@@ -157,7 +157,7 @@ function StepContact({ form }: StepProps) {
         <input
           {...register('phone')}
           type="tel"
-          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
           placeholder="+420 777 123 456"
         />
       </div>
@@ -179,7 +179,7 @@ function StepBilling({ form }: StepProps) {
           onClick={() => form.setValue('billingType', 'person')}
           className={`flex-1 py-3.5 px-4 text-sm font-mono rounded-[2px] border transition-colors ${
             billingType === 'person'
-              ? 'border-teal bg-teal/5 text-teal'
+              ? 'border-forest bg-forest/5 text-forest'
               : 'border-ink/15 text-ink-soft hover:border-ink/30'
           }`}
         >
@@ -190,7 +190,7 @@ function StepBilling({ form }: StepProps) {
           onClick={() => form.setValue('billingType', 'company')}
           className={`flex-1 py-3.5 px-4 text-sm font-mono rounded-[2px] border transition-colors ${
             billingType === 'company'
-              ? 'border-teal bg-teal/5 text-teal'
+              ? 'border-forest bg-forest/5 text-forest'
               : 'border-ink/15 text-ink-soft hover:border-ink/30'
           }`}
         >
@@ -204,7 +204,7 @@ function StepBilling({ form }: StepProps) {
             <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Nazev firmy</label>
             <input
               {...register('companyName')}
-              className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+              className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -212,14 +212,14 @@ function StepBilling({ form }: StepProps) {
               <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">ICO</label>
               <input
                 {...register('ico')}
-                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
             <div>
               <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">DIC</label>
               <input
                 {...register('dic')}
-                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
           </div>
@@ -227,7 +227,7 @@ function StepBilling({ form }: StepProps) {
             <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Ulice</label>
             <input
               {...register('billingStreet')}
-              className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+              className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -235,14 +235,14 @@ function StepBilling({ form }: StepProps) {
               <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Mesto</label>
               <input
                 {...register('billingCity')}
-                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
             <div>
               <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">PSC</label>
               <input
                 {...register('billingZip')}
-                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+                className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
               />
             </div>
           </div>
@@ -266,7 +266,7 @@ function StepExtras({ form }: StepProps) {
         <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Dietni omezeni</label>
         <input
           {...register('dietaryRestrictions')}
-          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
           placeholder="Vegetarian, bez lepku..."
         />
       </div>
@@ -275,7 +275,7 @@ function StepExtras({ form }: StepProps) {
         <label className="block text-[11px] font-mono uppercase tracking-wider text-ink-soft mb-1.5">Jak ses o nas dozvedel/a?</label>
         <input
           {...register('source')}
-          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors"
+          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors"
           placeholder="Instagram, doporuceni..."
         />
       </div>
@@ -285,7 +285,7 @@ function StepExtras({ form }: StepProps) {
         <textarea
           {...register('customerNote')}
           rows={3}
-          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors resize-none"
+          className="w-full px-3 py-3.5 bg-cream border border-ink/15 rounded-[2px] text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-forest transition-colors resize-none"
           placeholder="Cokoliv, co bychom meli vedet..."
         />
       </div>
@@ -334,11 +334,11 @@ function StepReview({ form, event }: StepProps) {
           <input
             type="checkbox"
             {...register('agreedTerms')}
-            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-teal"
+            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
             Souhlasim s{' '}
-            <a href="/podminky" className="text-teal underline">obchodnimi podminkami</a>
+            <a href="/podminky" className="text-forest underline">obchodnimi podminkami</a>
           </span>
         </label>
         {errors.agreedTerms && <p className="text-[11px] text-orange ml-6">{errors.agreedTerms.message}</p>}
@@ -347,11 +347,11 @@ function StepReview({ form, event }: StepProps) {
           <input
             type="checkbox"
             {...register('agreedGdpr')}
-            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-teal"
+            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
             Souhlasim se{' '}
-            <a href="/gdpr" className="text-teal underline">zpracovanim osobnich udaju</a>
+            <a href="/gdpr" className="text-forest underline">zpracovanim osobnich udaju</a>
           </span>
         </label>
         {errors.agreedGdpr && <p className="text-[11px] text-orange ml-6">{errors.agreedGdpr.message}</p>}
@@ -360,7 +360,7 @@ function StepReview({ form, event }: StepProps) {
           <input
             type="checkbox"
             {...register('agreedNewsletter')}
-            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-teal"
+            className="mt-0.5 w-4 h-4 rounded-[2px] border border-ink/20 accent-forest"
           />
           <span className="text-sm text-ink-soft">
             Chci odebirat novinky o dalsich akcich
@@ -385,7 +385,7 @@ function StepPayment({ form }: StepProps) {
           onClick={() => form.setValue('paymentMethod', 'qr_comgate')}
           className={`w-full p-4 text-left border rounded-[2px] transition-colors ${
             paymentMethod === 'qr_comgate'
-              ? 'border-teal bg-teal/5'
+              ? 'border-forest bg-forest/5'
               : 'border-ink/15 hover:border-ink/30'
           }`}
         >
@@ -398,7 +398,7 @@ function StepPayment({ form }: StepProps) {
           onClick={() => form.setValue('paymentMethod', 'bank_transfer')}
           className={`w-full p-4 text-left border rounded-[2px] transition-colors ${
             paymentMethod === 'bank_transfer'
-              ? 'border-teal bg-teal/5'
+              ? 'border-forest bg-forest/5'
               : 'border-ink/15 hover:border-ink/30'
           }`}
         >

@@ -4,7 +4,7 @@ import { Container } from '@/components/layout/Container'
 
 export function OrganizerSection() {
   return (
-    <section className="relative bg-teal py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-forest py-32 lg:py-40 overflow-hidden">
       {/* Dot pattern overlay */}
       <div
         className="absolute inset-0 opacity-[0.05]"

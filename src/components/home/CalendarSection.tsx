@@ -19,7 +19,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
       <Container>
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16 lg:mb-20 gap-6">
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-teal shrink-0">
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-forest shrink-0">
             &mdash; 04 / Kalendar
           </p>
           <div className="lg:text-right">
@@ -33,7 +33,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
         </div>
 
         {/* Event rows */}
-        <div className="border-t border-teal/20">
+        <div className="border-t border-forest/20">
           {events.map((event, i) => {
             const isArchived = event.status === 'archived'
             const isDraft = event.status === 'draft'
@@ -43,7 +43,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
               <div
                 key={event.id}
                 className={cn(
-                  'border-b border-teal/20 transition-colors duration-300',
+                  'border-b border-forest/20 transition-colors duration-300',
                   'hover:bg-orange/[0.05]',
                   isArchived && 'opacity-[0.42] hover:opacity-[0.6]'
                 )}
@@ -56,7 +56,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
                   </span>
 
                   {/* Type badge */}
-                  <Badge type={event.type} className="text-teal border-teal justify-self-start" />
+                  <Badge type={event.type} className="text-forest border-forest justify-self-start" />
 
                   {/* Name + venue */}
                   <div>
@@ -86,7 +86,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
                       </Link>
                     )}
                     {isDraft && (
-                      <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-teal border border-teal px-3 py-2 rounded-[2px]">
+                      <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-forest border border-forest px-3 py-2 rounded-[2px]">
                         Brzy
                       </span>
                     )}
@@ -105,7 +105,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
                     {formatDateDot(event.starts_at)}
                   </span>
                   <div className="justify-self-end">
-                    <Badge type={event.type} className="text-teal border-teal" />
+                    <Badge type={event.type} className="text-forest border-forest" />
                   </div>
 
                   {/* Row 2: name spans full */}
@@ -134,7 +134,7 @@ export function CalendarSection({ events }: CalendarSectionProps) {
                       </Link>
                     )}
                     {isDraft && (
-                      <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-teal border border-teal px-3 py-2 rounded-[2px]">
+                      <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-forest border border-forest px-3 py-2 rounded-[2px]">
                         Brzy
                       </span>
                     )}

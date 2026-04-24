@@ -26,7 +26,7 @@ export default function KontaktPage() {
                       <span className="font-mono text-ink-soft text-sm block mb-1">Email</span>
                       <a
                         href="mailto:david@conventus.cz"
-                        className="font-sans text-ink text-lg hover:text-teal transition-colors"
+                        className="font-sans text-ink text-lg hover:text-forest transition-colors"
                       >
                         david@conventus.cz
                       </a>
@@ -37,7 +37,7 @@ export default function KontaktPage() {
                         href="https://instagram.com/conventus.cz"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-sans text-ink text-lg hover:text-teal transition-colors"
+                        className="font-sans text-ink text-lg hover:text-forest transition-colors"
                       >
                         @conventus.cz
                       </a>
@@ -62,7 +62,7 @@ export default function KontaktPage() {
                       type="text"
                       id="name"
                       name="name"
-                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-teal transition-colors"
+                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-forest transition-colors"
                       placeholder="Tvoje jméno"
                     />
                   </div>
@@ -77,7 +77,7 @@ export default function KontaktPage() {
                       type="email"
                       id="email"
                       name="email"
-                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-teal transition-colors"
+                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-forest transition-colors"
                       placeholder="tvuj@email.cz"
                     />
                   </div>
@@ -92,7 +92,7 @@ export default function KontaktPage() {
                       id="message"
                       name="message"
                       rows={5}
-                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-teal transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-cream border border-ink/10 rounded-[2px] font-sans text-ink text-base focus:outline-none focus:border-forest transition-colors resize-none"
                       placeholder="Napiš nám..."
                     />
                   </div>
@@ -142,7 +142,7 @@ export default function KontaktPage() {
                   Napiš nám na{' '}
                   <a
                     href="mailto:david@conventus.cz"
-                    className="text-teal font-medium hover:underline"
+                    className="text-forest font-medium hover:underline"
                   >
                     david@conventus.cz
                   </a>

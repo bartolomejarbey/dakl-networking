@@ -140,7 +140,7 @@ export default function AkcePage() {
       <Navbar />
       <main>
         {/* Hero section */}
-        <section className="bg-teal pt-[140px] pb-20 lg:pb-28">
+        <section className="bg-forest pt-[140px] pb-20 lg:pb-28">
           <Container>
             <h1 className="font-serif text-cream text-[clamp(40px,5.2vw,72px)] leading-[1.08] max-w-[900px]">
               Co se deje. Co bylo. Kam prijdes.

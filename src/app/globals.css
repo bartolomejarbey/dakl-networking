@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 :root {
+  --forest-deep: #0F2926;
+  --forest: #163933;
+  --forest-lighter: #1F4A42;
+  --forest-glow: #2A6B5F;
   --teal: #1E8B85;
   --teal-dark: #16665F;
   --orange: #E97940;

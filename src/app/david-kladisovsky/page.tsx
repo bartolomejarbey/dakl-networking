@@ -9,7 +9,7 @@ export default function DavidKladisovskyPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="bg-teal pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
+        <section className="bg-forest pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
               <div className="md:col-span-7">
@@ -83,7 +83,7 @@ export default function DavidKladisovskyPage() {
                 href="https://bnservices.cz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center mt-8 font-mono text-teal text-sm hover:underline"
+                className="inline-flex items-center mt-8 font-mono text-forest text-sm hover:underline"
               >
                 → bnservices.cz
               </a>
@@ -100,7 +100,7 @@ export default function DavidKladisovskyPage() {
                 <li>
                   <a
                     href="mailto:david@conventus.cz"
-                    className="font-mono text-ink text-base hover:text-teal transition-colors"
+                    className="font-mono text-ink text-base hover:text-forest transition-colors"
                   >
                     david@conventus.cz
                   </a>
@@ -110,7 +110,7 @@ export default function DavidKladisovskyPage() {
                     href="https://linkedin.com/in/davidkladisovsky"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-ink text-base hover:text-teal transition-colors"
+                    className="font-mono text-ink text-base hover:text-forest transition-colors"
                   >
                     LinkedIn
                   </a>
@@ -120,7 +120,7 @@ export default function DavidKladisovskyPage() {
                     href="https://instagram.com/conventus.cz"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-ink text-base hover:text-teal transition-colors"
+                    className="font-mono text-ink text-base hover:text-forest transition-colors"
                   >
                     Instagram
                   </a>

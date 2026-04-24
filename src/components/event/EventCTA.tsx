@@ -15,7 +15,7 @@ export function EventCTA({ event, soldCount = 0 }: EventCTAProps) {
   const progressPercent = event.capacity > 0 ? (soldCount / event.capacity) * 100 : 0
 
   return (
-    <section className="relative bg-teal overflow-hidden py-20 lg:py-28">
+    <section className="relative bg-forest overflow-hidden py-20 lg:py-28">
       {/* Dot pattern overlay */}
       <div
         className="absolute inset-0 pointer-events-none"

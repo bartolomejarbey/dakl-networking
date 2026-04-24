@@ -8,6 +8,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        forest: {
+          deep: '#0F2926',
+          DEFAULT: '#163933',
+          lighter: '#1F4A42',
+          glow: '#2A6B5F',
+        },
         teal: {
           DEFAULT: '#1E8B85',
           dark: '#16665F',

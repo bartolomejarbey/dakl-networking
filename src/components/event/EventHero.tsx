@@ -30,7 +30,7 @@ export function EventHero({ event, soldCount = 0 }: EventHeroProps) {
   }
 
   return (
-    <section className="relative bg-teal overflow-hidden">
+    <section className="relative bg-forest overflow-hidden">
       {/* Dot pattern overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -53,7 +53,7 @@ export function EventHero({ event, soldCount = 0 }: EventHeroProps) {
           />
         )}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-teal via-teal/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-transparent" />
       </div>
 
       {/* Content */}

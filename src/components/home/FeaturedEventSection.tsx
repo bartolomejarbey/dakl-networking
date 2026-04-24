@@ -54,7 +54,7 @@ export function FeaturedEventSection({ event, soldCount = 0 }: FeaturedEventSect
     : DEFAULT_PROGRAM
 
   return (
-    <section className="relative bg-teal overflow-hidden py-24 lg:py-32">
+    <section className="relative bg-forest overflow-hidden py-24 lg:py-32">
       {/* Dot pattern overlay */}
       <div
         className="absolute inset-0 pointer-events-none"

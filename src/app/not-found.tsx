@@ -26,7 +26,7 @@ export default function NotFound() {
               <div>
                 <Link
                   href="/akce"
-                  className="font-mono text-teal text-sm hover:underline"
+                  className="font-mono text-forest text-sm hover:underline"
                 >
                   Nebo se podívej na kalendář akcí →
                 </Link>

@@ -64,8 +64,8 @@ export function EventList({ events }: EventListProps) {
               className={cn(
                 'font-mono text-[11px] uppercase tracking-[0.12em] px-4 py-2 rounded-full border transition-colors duration-300',
                 activeType === filter.value
-                  ? 'bg-teal text-cream border-teal'
-                  : 'bg-transparent text-teal border-teal hover:bg-teal/10'
+                  ? 'bg-forest text-cream border-forest'
+                  : 'bg-transparent text-forest border-forest hover:bg-forest/10'
               )}
             >
               {filter.label}
@@ -83,7 +83,7 @@ export function EventList({ events }: EventListProps) {
                 'font-mono text-[11px] uppercase tracking-[0.12em] px-4 py-2 rounded-full border transition-colors duration-300',
                 activeStatus === filter.value
                   ? 'bg-orange text-cream border-orange'
-                  : 'bg-transparent text-teal border-teal hover:bg-orange/10'
+                  : 'bg-transparent text-forest border-forest hover:bg-orange/10'
               )}
             >
               {filter.label}
@@ -93,7 +93,7 @@ export function EventList({ events }: EventListProps) {
       </div>
 
       {/* Event rows */}
-      <div className="border-t border-teal/20">
+      <div className="border-t border-forest/20">
         {filtered.length === 0 && (
           <div className="py-16 text-center">
             <p className="font-mono text-[13px] uppercase tracking-[0.12em] text-ink-soft">
@@ -112,7 +112,7 @@ export function EventList({ events }: EventListProps) {
               key={event.id}
               href={`/akce/${event.slug}`}
               className={cn(
-                'block border-b border-teal/20 transition-colors duration-300',
+                'block border-b border-forest/20 transition-colors duration-300',
                 'hover:bg-orange/[0.05]',
                 isArchived && 'opacity-[0.42] hover:opacity-[0.6]'
               )}
@@ -125,7 +125,7 @@ export function EventList({ events }: EventListProps) {
                 </span>
 
                 {/* Type badge */}
-                <Badge type={event.type} className="text-teal border-teal justify-self-start" />
+                <Badge type={event.type} className="text-forest border-forest justify-self-start" />
 
                 {/* Name + venue */}
                 <div>
@@ -152,7 +152,7 @@ export function EventList({ events }: EventListProps) {
                     </span>
                   )}
                   {isDraft && (
-                    <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-teal border border-teal px-3 py-2 rounded-[2px]">
+                    <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-forest border border-forest px-3 py-2 rounded-[2px]">
                       Brzy
                     </span>
                   )}
@@ -171,7 +171,7 @@ export function EventList({ events }: EventListProps) {
                   {formatDateDot(event.starts_at)}
                 </span>
                 <div className="justify-self-end">
-                  <Badge type={event.type} className="text-teal border-teal" />
+                  <Badge type={event.type} className="text-forest border-forest" />
                 </div>
 
                 {/* Row 2: name spans full */}
@@ -197,7 +197,7 @@ export function EventList({ events }: EventListProps) {
                     </span>
                   )}
                   {isDraft && (
-                    <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-teal border border-teal px-3 py-2 rounded-[2px]">
+                    <span className="inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-forest border border-forest px-3 py-2 rounded-[2px]">
                       Brzy
                     </span>
                   )}

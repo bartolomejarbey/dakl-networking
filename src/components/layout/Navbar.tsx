@@ -16,7 +16,7 @@ const navLinks = [
 interface NavbarProps {
   ctaHref?: string
   ctaLabel?: string
-  /** Force the solid/scrolled navbar style (use on pages without teal hero) */
+  /** Force the solid/scrolled navbar style (use on pages without forest hero) */
   solid?: boolean
 }
 
@@ -36,7 +36,7 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
       className={cn(
         'fixed top-0 left-0 right-0 z-[80] flex items-center transition-all duration-[350ms] ease-out border-b',
         scrolled
-          ? 'bg-cream text-ink h-16 border-teal/[0.18]'
+          ? 'bg-cream text-ink h-16 border-forest/[0.18]'
           : 'text-cream h-[88px] border-transparent'
       )}
     >
@@ -106,7 +106,7 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-cream text-ink border-b border-teal/[0.18] py-6 px-[var(--gutter)] max-h-[calc(100vh-64px)] overflow-y-auto">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-cream text-ink border-b border-forest/[0.18] py-6 px-[var(--gutter)] max-h-[calc(100vh-64px)] overflow-y-auto">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link

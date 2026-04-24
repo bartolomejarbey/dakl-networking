@@ -88,7 +88,7 @@ function FAQAccordionItem({ item }: { item: FAQItem }) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between py-6 text-left group"
       >
-        <span className="font-sans text-ink text-lg pr-8 group-hover:text-teal transition-colors">
+        <span className="font-sans text-ink text-lg pr-8 group-hover:text-forest transition-colors">
           {item.question}
         </span>
         <span className="font-mono text-ink-soft text-2xl shrink-0 w-8 h-8 flex items-center justify-center">

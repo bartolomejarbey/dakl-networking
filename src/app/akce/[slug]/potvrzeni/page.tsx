@@ -21,7 +21,7 @@ export default function PotvrzeniPage({ params, searchParams }: PageProps) {
       <Navbar />
       <main>
         {/* Hero section */}
-        <section className="bg-teal pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
+        <section className="bg-forest pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
           <Container>
             <div className="flex flex-col items-center text-center">
               <div className="w-[80px] h-[80px] rounded-full bg-cream/20 flex items-center justify-center mb-8">
@@ -63,7 +63,7 @@ export default function PotvrzeniPage({ params, searchParams }: PageProps) {
                     href="https://instagram.com/conventus.cz"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-teal text-sm hover:underline"
+                    className="font-mono text-forest text-sm hover:underline"
                   >
                     → Instagram
                   </a>
@@ -71,7 +71,7 @@ export default function PotvrzeniPage({ params, searchParams }: PageProps) {
                     href="https://linkedin.com/company/conventus"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-teal text-sm hover:underline"
+                    className="font-mono text-forest text-sm hover:underline"
                   >
                     → LinkedIn
                   </a>

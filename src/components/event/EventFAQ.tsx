@@ -35,8 +35,8 @@ export function EventFAQ({ faqs }: EventFAQProps) {
             <div
               key={i}
               className={cn(
-                'border-b border-teal/[0.15]',
-                i === 0 && 'border-t border-teal/[0.15]'
+                'border-b border-forest/[0.15]',
+                i === 0 && 'border-t border-forest/[0.15]'
               )}
             >
               <button
