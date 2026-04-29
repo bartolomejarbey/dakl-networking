@@ -193,6 +193,7 @@ function StepContact({ form }: StepProps) {
 function StepBilling({ form }: StepProps) {
   const { register, watch, formState: { errors } } = form
   const billingType = watch('billingType')
+  const isVatPayer = watch('customerIsVatPayer')
 
   return (
     <StepShell number={3} total={6} title="Fakturace">
@@ -220,15 +221,54 @@ function StepBilling({ form }: StepProps) {
             <span className={labelClass}>Název firmy</span>
             <input {...register('companyName')} className={inputClass} placeholder="Bonum Negotium s.r.o." autoComplete="organization" />
           </label>
+
+          {/* VAT-payer toggle — drives which company issues the invoice */}
+          <fieldset className="border-y border-ink/15 py-5 -mx-1 px-1">
+            <legend className={cn(labelClass, 'px-1 mb-0')}>Plátce DPH?</legend>
+            <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-ink-soft/55 mt-2 mb-4 leading-[1.6]">
+              Vyberte podle stavu vaší firmy. Vystavíme fakturu z naší DPH-firmy, nebo z neplátce.
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              {([true, false] as const).map((value) => (
+                <button
+                  key={String(value)}
+                  type="button"
+                  onClick={() => form.setValue('customerIsVatPayer', value)}
+                  aria-pressed={isVatPayer === value}
+                  className={cn(
+                    'py-3.5 px-4 text-left font-mono text-[11px] tracking-[0.18em] uppercase rounded-[1px] border-2 transition-colors',
+                    isVatPayer === value
+                      ? 'border-orange bg-orange text-cream'
+                      : 'border-ink/25 text-ink-soft hover:border-ink hover:text-ink'
+                  )}
+                >
+                  <span className="block">
+                    [&nbsp;{value ? 'Ano — plátce' : 'Ne — neplátce'}&nbsp;]
+                  </span>
+                  <span
+                    className={cn(
+                      'block mt-1.5 text-[9px] tracking-[0.14em] normal-case',
+                      isVatPayer === value ? 'text-cream/85' : 'text-ink-soft/55'
+                    )}
+                  >
+                    {value ? 'Faktura s DPH 21 %' : 'Faktura bez DPH'}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-7">
             <label className="block">
               <span className={labelClass}>IČO</span>
               <input {...register('ico')} className={inputClass} placeholder="12345678" inputMode="numeric" />
             </label>
-            <label className="block">
-              <span className={labelClass}>DIČ — volitelné</span>
-              <input {...register('dic')} className={inputClass} placeholder="CZ12345678" />
-            </label>
+            {isVatPayer && (
+              <label className="block">
+                <span className={labelClass}>DIČ</span>
+                <input {...register('dic')} className={inputClass} placeholder="CZ12345678" />
+              </label>
+            )}
           </div>
           <label className="block">
             <span className={labelClass}>Ulice a č.&nbsp;p.</span>
@@ -451,6 +491,7 @@ export function CheckoutWizard({ event, soldCount }: CheckoutWizardProps) {
       email: '',
       phone: '',
       billingType: 'person',
+      customerIsVatPayer: false,
       companyName: '',
       ico: '',
       dic: '',

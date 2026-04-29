@@ -61,6 +61,26 @@ export type Database = {
         Insert: Setting
         Update: Partial<Setting>
       }
+      customer_tags: {
+        Row: CustomerTag
+        Insert: Omit<CustomerTag, 'id' | 'created_at'>
+        Update: Partial<Omit<CustomerTag, 'id'>>
+      }
+      customer_notes: {
+        Row: CustomerNote
+        Insert: Omit<CustomerNote, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<CustomerNote, 'id'>>
+      }
+      follow_ups: {
+        Row: FollowUp
+        Insert: Omit<FollowUp, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<FollowUp, 'id'>>
+      }
+    }
+    Views: {
+      customer_overview: {
+        Row: CustomerOverview
+      }
     }
     Functions: {
       reserve_spots: {
@@ -167,6 +187,12 @@ export type Order = {
   invoice_number: string | null
   invoice_pdf_url: string | null
   proforma_pdf_url: string | null
+  customer_is_vat_payer: boolean | null
+  issuer_key: 'issuer_payer' | 'issuer_nonpayer' | null
+  issuer_snapshot: IssuerSettings | null
+  qr_payment_string: string | null
+  invoice_issued_at: string | null
+  invoice_due_at: string | null
   agreed_terms: boolean
   agreed_gdpr: boolean
   agreed_newsletter: boolean
@@ -174,6 +200,73 @@ export type Order = {
   updated_at: string
   ip_address: string | null
   user_agent: string | null
+}
+
+export type IssuerSettings = {
+  name: string
+  ico: string
+  dic: string | null
+  address_street: string
+  address_city: string
+  address_zip: string
+  address_country: string
+  bank_account: string
+  bank_code: string
+  bank_iban: string
+  is_vat_payer: boolean
+  vat_rate: number
+  email: string
+  phone: string
+}
+
+export type CustomerTag = {
+  id: string
+  email: string
+  tag: string
+  color: string | null
+  created_at: string
+  created_by: string | null
+}
+
+export type CustomerNote = {
+  id: string
+  email: string
+  body: string
+  is_pinned: boolean
+  created_at: string
+  updated_at: string
+  created_by: string | null
+}
+
+export type FollowUpStatus = 'pending' | 'done' | 'snoozed' | 'cancelled'
+
+export type FollowUp = {
+  id: string
+  email: string
+  order_id: string | null
+  due_at: string
+  subject: string
+  body: string | null
+  status: FollowUpStatus
+  completed_at: string | null
+  completion_note: string | null
+  created_at: string
+  updated_at: string
+  created_by: string | null
+}
+
+export type CustomerOverview = {
+  email: string
+  full_name: string | null
+  phone: string | null
+  order_count: number
+  paid_order_count: number
+  lifetime_value_czk: number
+  last_order_at: string | null
+  first_order_at: string | null
+  has_company_orders: boolean | null
+  is_vat_payer: boolean | null
+  tags: string[]
 }
 
 export type PaymentMethod = 'qr_comgate' | 'bank_transfer'

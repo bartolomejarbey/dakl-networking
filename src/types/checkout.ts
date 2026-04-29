@@ -12,6 +12,7 @@ export const checkoutSchema = z.object({
 
   // Step 3: Billing
   billingType: z.enum(['person', 'company']),
+  customerIsVatPayer: z.boolean().default(false),
   companyName: z.string().optional(),
   ico: z.string().optional(),
   dic: z.string().optional(),
@@ -46,6 +47,7 @@ export const stepSchemas = {
   }),
   3: z.object({
     billingType: checkoutSchema.shape.billingType,
+    customerIsVatPayer: checkoutSchema.shape.customerIsVatPayer,
     companyName: checkoutSchema.shape.companyName,
     ico: checkoutSchema.shape.ico,
     dic: checkoutSchema.shape.dic,
