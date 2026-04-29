@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { PageTransition } from '@/components/layout/PageTransition'
+import { CustomCursor } from '@/components/ui/CustomCursor'
+import { GrainOverlay } from '@/components/ui/GrainOverlay'
+import { FolioIndex } from '@/components/layout/FolioIndex'
 
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
@@ -26,11 +30,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'DaKl Networking — Setkání podnikatelů, co něco dělají',
+    default: 'DaKl Networking — Čtvrtletník o lidech, co něco dělají',
     template: '%s | DaKl Networking',
   },
   description:
-    'Prémiové networking akce pro podnikatele. Kurátorský výběr hostů, all-inclusive cena, každý měsíc jiný formát.',
+    'Prémiové networking akce pro podnikatele. Kurátorský výběr hostů, all-inclusive cena, každý měsíc jiný formát. Pražské vydání.',
 }
 
 export default function RootLayout({
@@ -43,7 +47,12 @@ export default function RootLayout({
       lang="cs"
       className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body className="relative">
+        <CustomCursor />
+        <FolioIndex />
+        <PageTransition>{children}</PageTransition>
+        <GrainOverlay fixed opacity={0.022} />
+      </body>
     </html>
   )
 }

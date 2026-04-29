@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
+import { Wordmark } from '@/components/ui/Wordmark'
 
 const navLinks = [
-  { href: '/akce', label: 'Kalendář akcí' },
-  { href: '/david-kladisovsky', label: 'O pořadateli' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/akce', label: 'Vydání' },
+  { href: '/david-kladisovsky', label: 'Pořadatel' },
+  { href: '/faq', label: 'Otázky' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
@@ -20,12 +21,20 @@ interface NavbarProps {
   solid?: boolean
 }
 
-export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid = false }: NavbarProps) {
+export function Navbar({
+  ctaHref = '/akce',
+  ctaLabel = 'Odebírat',
+  solid = false,
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(solid)
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 30, mass: 0.4 })
+  const progressWidth = useTransform(progress, (v) => `${v * 100}%`)
+
   useEffect(() => {
-    const onScroll = () => setScrolled(solid || window.scrollY > 20)
+    const onScroll = () => setScrolled(solid || window.scrollY > 24)
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
@@ -34,42 +43,36 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-[80] flex items-center transition-all duration-[350ms] ease-out border-b',
+        'fixed top-0 left-0 right-0 z-[80] flex items-center transition-[background-color,color,height,backdrop-filter] duration-[400ms] ease-editorial',
         scrolled
-          ? 'bg-cream text-ink h-16 border-forest/[0.18]'
-          : 'text-cream h-[88px] border-transparent'
+          ? 'bg-cream/85 text-ink h-[68px] backdrop-blur-md'
+          : 'text-cream h-[96px]'
       )}
     >
+      {/* Hairline at the bottom of the navbar — doubles as scroll progress bar */}
+      <div
+        className={cn(
+          'absolute left-0 right-0 bottom-0 h-px transition-colors duration-[400ms]',
+          scrolled ? 'bg-ink/15' : 'bg-cream/15'
+        )}
+      />
+      <motion.div
+        aria-hidden
+        style={{ width: progressWidth }}
+        className={cn(
+          'absolute left-0 bottom-0 h-px origin-left transition-colors duration-[400ms]',
+          scrolled ? 'bg-orange' : 'bg-orange'
+        )}
+      />
+
       <div className="grid grid-cols-[1fr_auto_1fr] items-center w-full max-w-container mx-auto px-[var(--gutter)] gap-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3.5 leading-none group">
-          <span className="w-11 h-11 shrink-0 block">
-            <Image
-              src="/images/logo.png"
-              alt=""
-              width={44}
-              height={44}
-              className={cn(
-                'w-full h-full object-contain transition-all',
-                scrolled ? '' : 'brightness-0 invert'
-              )}
-            />
-          </span>
-          <span className="flex flex-col gap-1">
-            <span className="relative inline-block font-serif italic text-[30px] tracking-[-0.01em] leading-none px-2.5 py-0.5">
-              {/* Orange brush stroke behind text */}
-              <span
-                className="absolute inset-[-2px_-6px_-4px_-6px] -z-10 bg-no-repeat bg-[length:100%_100%] transition-transform duration-400 ease-[cubic-bezier(.22,1,.36,1)] -rotate-[1.2deg] group-hover:-rotate-[2.4deg] group-hover:scale-[1.04]"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'><path fill='%23E97940' d='M8,34 C60,22 120,18 180,24 C240,28 300,30 360,26 C378,24 390,28 392,36 C394,46 380,52 360,54 C300,58 240,56 180,56 C120,56 60,54 12,50 C4,48 0,44 2,40 C4,36 6,34 8,34 Z' opacity='.82'/><path fill='%23E97940' d='M20,40 C80,32 160,28 240,30 C290,32 340,34 378,32' stroke='%23E97940' stroke-width='2' fill='none' opacity='.3'/></svg>")`,
-                }}
-              />
-              DaKl Networking
-            </span>
-            <span className="font-mono text-[9px] tracking-[0.24em] uppercase opacity-70">
-              Networking pro byznys · Praha
-            </span>
-          </span>
+        {/* Wordmark */}
+        <Link
+          href="/"
+          aria-label="DaKl Networking — domů"
+          className="leading-none transition-opacity duration-300 hover:opacity-90"
+        >
+          <Wordmark size="md" subtitle="Networking" edition="04" accent />
         </Link>
 
         {/* Desktop nav */}
@@ -78,7 +81,7 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
             <Link
               key={link.href}
               href={link.href}
-              className="font-mono text-xs tracking-[0.12em] uppercase py-1.5 relative after:content-[''] after:absolute after:left-0 after:right-full after:bottom-0.5 after:h-px after:bg-current after:transition-[right] after:duration-[350ms] after:ease-[cubic-bezier(.22,1,.36,1)] hover:after:right-0"
+              className="font-mono text-[11px] tracking-[0.18em] uppercase py-1.5 relative after:content-[''] after:absolute after:left-0 after:right-full after:bottom-0 after:h-px after:bg-orange after:transition-[right] after:duration-[400ms] after:ease-editorial hover:after:right-0"
             >
               {link.label}
             </Link>
@@ -89,41 +92,55 @@ export function Navbar({ ctaHref = '/akce', ctaLabel = 'Kalendář akcí', solid
         <div className="justify-self-end flex items-center gap-4">
           <Link
             href={ctaHref}
-            className="hidden sm:inline-flex items-center gap-2.5 bg-orange text-cream font-mono text-xs tracking-[0.08em] uppercase font-medium px-[22px] py-[13px] rounded-[2px] transition-colors hover:bg-orange-dark"
+            className={cn(
+              'hidden sm:inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] uppercase font-medium px-5 py-2.5 rounded-[1px] transition-colors duration-300 group',
+              scrolled
+                ? 'bg-ink text-cream hover:bg-orange-dark'
+                : 'border border-cream text-cream hover:bg-cream hover:text-forest-deep'
+            )}
           >
-            {ctaLabel} <span className="inline-block transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)] hover:translate-x-1">→</span>
+            {ctaLabel}
+            <span className="inline-block transition-transform duration-300 ease-editorial group-hover:translate-x-1" aria-hidden>
+              &rarr;
+            </span>
           </Link>
 
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 -mr-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Zavřít menu' : 'Otevřít menu'}
+            aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-cream text-ink border-b border-forest/[0.18] py-6 px-[var(--gutter)] max-h-[calc(100vh-64px)] overflow-y-auto">
-          <nav className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-cream text-ink border-b border-ink/15 py-6 px-[var(--gutter)] max-h-[calc(100vh-68px)] overflow-y-auto shadow-print">
+          <nav className="flex flex-col" aria-label="Mobile">
+            {navLinks.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-sm tracking-[0.1em] uppercase py-2"
+                className={cn(
+                  'font-mono text-[12px] tracking-[0.18em] uppercase py-4 flex items-center justify-between border-b border-ink/10',
+                  i === 0 && 'border-t border-ink/10'
+                )}
                 onClick={() => setMobileOpen(false)}
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span className="text-orange">&rarr;</span>
               </Link>
             ))}
             <Link
               href={ctaHref}
-              className="inline-flex items-center gap-2.5 bg-orange text-cream font-mono text-xs tracking-[0.08em] uppercase font-medium px-[22px] py-[13px] rounded-[2px] mt-2 w-fit"
+              className="mt-6 inline-flex items-center justify-between bg-ink text-cream font-mono text-[11px] tracking-[0.16em] uppercase font-medium px-5 py-4 rounded-[1px]"
               onClick={() => setMobileOpen(false)}
             >
-              {ctaLabel} →
+              {ctaLabel}
+              <span aria-hidden>&rarr;</span>
             </Link>
           </nav>
         </div>

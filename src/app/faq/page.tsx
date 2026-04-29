@@ -1,19 +1,20 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { Container } from '@/components/layout/Container';
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { Container } from '@/components/layout/Container'
+import { cn } from '@/lib/utils'
 
 interface FAQItem {
-  question: string;
-  answer: string;
+  question: string
+  answer: string
 }
 
 interface FAQCategory {
-  title: string;
-  items: FAQItem[];
+  title: string
+  items: FAQItem[]
 }
 
 const faqData: FAQCategory[] = [
@@ -23,22 +24,22 @@ const faqData: FAQCategory[] = [
       {
         question: 'Kdo může přijít na akci?',
         answer:
-          'Naše akce jsou určeny pro aktivní podnikatele, freelancery a profesionály, kteří chtějí rozšířit svou síť kontaktů a inspirovat se od ostatních. Pokud podnikáš nebo o podnikání uvažuješ, jsi vítán/a.',
+          'Akce jsou pro aktivní podnikatele, freelancery a profesionály. Pokud podnikáš nebo o podnikání uvažuješ, jsi vítán. Filtruje se to osobně — nejde o exkluzivitu, jde o kvalitu večera.',
       },
       {
         question: 'Co je zahrnuto v ceně?',
         answer:
-          'V ceně vstupenky je zahrnuto vše — vstup na akci, občerstvení, nápoje, networking program a veškerý doprovodný program. Nemusíš se starat o nic dalšího.',
+          'Všechno. Vstup, jídlo, pití (alkoholické i nealko), aktivity, doprovodný program. Žádné domlouvání u baru, žádné zvlášť faktury.',
       },
       {
         question: 'Jaký je dress code?',
         answer:
-          'Dress code závisí na typu akce. U neformálních networkingů (beach bar, grilování) stačí smart casual. U business dinner doporučujeme formálnější oblečení. Vždy to upřesníme v pozvánce.',
+          'Záleží na formátu. Loď a beach bar — smart casual. Business dinner — formálnější. Vždy upřesníme v pozvánce.',
       },
       {
         question: 'Můžu přijít sám/sama?',
         answer:
-          'Samozřejmě! Většina našich účastníků přichází sama. Celý program je navržen tak, aby ses rychle seznámil/a s ostatními. Postaráme se o to, aby ses cítil/a pohodlně.',
+          'Většina lidí chodí sama. Program je navržený tak, aby ses rychle rozhýbal/a. O nikoho se starat nemusíš — postaráme se my.',
       },
     ],
   },
@@ -48,12 +49,12 @@ const faqData: FAQCategory[] = [
       {
         question: 'Jak probíhá platba?',
         answer:
-          'Platba probíhá převodem na účet nebo pomocí QR kódu, který ti pošleme po registraci. Platbu je třeba provést do 48 hodin od objednávky, jinak místo uvolníme dalšímu zájemci.',
+          'Po přihlášce ti pošleme QR kód nebo bankovní údaje. Platba do 48 h, jinak místo uvolníme. Faktura se posílá automaticky po přijetí platby.',
       },
       {
         question: 'Dostanu fakturu?',
         answer:
-          'Ano, fakturu ti pošleme automaticky na email po přijetí platby. Faktura je vystavena jako daňový doklad a můžeš si ji uplatnit jako náklad na vzdělávání nebo reprezentaci.',
+          'Ano, fakturu posíláme automaticky e-mailem. Daňový doklad — jde uplatnit jako náklad na vzdělávání nebo reprezentaci.',
       },
     ],
   },
@@ -63,7 +64,7 @@ const faqData: FAQCategory[] = [
       {
         question: 'Můžu akci stornovat?',
         answer:
-          'Ano, akci můžeš stornovat nejpozději 48 hodin před jejím začátkem a vrátíme ti plnou cenu. Při pozdějším stornování bohužel nemůžeme platbu vrátit, ale můžeš za sebe poslat náhradníka.',
+          'Do 48 h před akcí — vrátíme 100 % částky. Po této hranici už místo nedrží smysl, ale klidně za sebe pošli náhradníka.',
       },
     ],
   },
@@ -71,28 +72,40 @@ const faqData: FAQCategory[] = [
     title: 'Technické',
     items: [
       {
-        question: 'Nedostal/a jsem potvrzovací email',
+        question: 'Nedostal/a jsem potvrzovací e-mail',
         answer:
-          'Zkontroluj prosím složku spam/nevyžádaná pošta. Pokud tam email také není, napiš nám na david@daklnetworking.cz a my ti potvrzení pošleme znovu. Ujisti se, že jsi zadal/a správnou emailovou adresu při registraci.',
+          'Zkontroluj spam. Když ani tam není, napiš na david@daklnetworking.cz a pošleme znovu. Ujisti se, že byla správná e-mailová adresa.',
       },
     ],
   },
-];
+]
 
-function FAQAccordionItem({ item }: { item: FAQItem }) {
-  const [isOpen, setIsOpen] = useState(false);
+function FAQAccordionItem({ item, index }: { item: FAQItem; index: number }) {
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-ink/10">
+    <li className="border-b border-ink/15">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-6 text-left group"
+        className="w-full flex items-baseline justify-between text-left py-7 lg:py-8 gap-8 group"
+        aria-expanded={isOpen}
       >
-        <span className="font-sans text-ink text-lg pr-8 group-hover:text-forest transition-colors">
-          {item.question}
-        </span>
-        <span className="font-mono text-ink-soft text-2xl shrink-0 w-8 h-8 flex items-center justify-center">
-          {isOpen ? '−' : '+'}
+        <div className="flex items-baseline gap-4 lg:gap-6 flex-1">
+          <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-orange shrink-0 tabular-nums">
+            Q{String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="font-serif italic text-ink text-[20px] lg:text-[26px] leading-[1.25]">
+            {item.question}
+          </span>
+        </div>
+        <span
+          aria-hidden
+          className={cn(
+            'shrink-0 font-mono text-[18px] text-ink/65 transition-transform duration-400 ease-editorial',
+            isOpen && 'rotate-90 text-orange'
+          )}
+        >
+          +
         </span>
       </button>
       <AnimatePresence initial={false}>
@@ -101,47 +114,63 @@ function FAQAccordionItem({ item }: { item: FAQItem }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-ink-soft text-base leading-relaxed pr-12 pb-6">
-              {item.answer}
-            </p>
+            <div className="grid grid-cols-[64px_1fr] lg:grid-cols-[88px_1fr] gap-4 lg:gap-6 pb-7 lg:pb-8">
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/60 tabular-nums">
+                A
+              </span>
+              <p className="text-ink-soft text-[16px] lg:text-[18px] leading-[1.6] max-w-[680px]">
+                {item.answer}
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  );
+    </li>
+  )
 }
 
 export default function FAQPage() {
+  let qIndex = 0
   return (
     <>
       <Navbar solid />
       <main>
-        {/* Hero */}
-        <section className="bg-cream pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
+        <section className="bg-cream text-ink pt-32 lg:pt-40 pb-24 lg:pb-32">
           <Container>
-            <h1 className="font-serif text-ink text-[clamp(40px,5.2vw,72px)] leading-tight">
-              Nejčastější otázky
-            </h1>
-          </Container>
-        </section>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between mb-14">
+              <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange">
+                §&nbsp;Otázky a odpovědi
+              </p>
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/60 tabular-nums">
+                {String(faqData.reduce((acc, c) => acc + c.items.length, 0)).padStart(2, '0')}&nbsp;položek · {String(faqData.length).padStart(2, '0')}&nbsp;rubrik
+              </p>
+            </div>
 
-        {/* FAQ Content */}
-        <section className="bg-cream pb-[140px] max-md:pb-[100px]">
-          <Container>
-            <div className="max-w-[820px]">
-              {faqData.map((category) => (
-                <div key={category.title} className="mb-16 last:mb-0">
-                  <h2 className="font-mono text-ink-soft text-xs uppercase tracking-widest mb-8">
-                    {category.title}
-                  </h2>
-                  <div>
-                    {category.items.map((item) => (
-                      <FAQAccordionItem key={item.question} item={item} />
-                    ))}
-                  </div>
+            <h1
+              className="font-serif text-ink leading-[1] tracking-[-0.022em] text-[clamp(48px,8vw,128px)] mb-20 lg:mb-28 max-w-[1100px]"
+              style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
+            >
+              Časté otázky.
+              <span className="block italic text-ink-soft pl-[0.4em]">
+                Krátké odpovědi.
+              </span>
+            </h1>
+
+            <div className="max-w-[920px]">
+              {faqData.map((category, ci) => (
+                <div key={category.title} className="mb-20 last:mb-0">
+                  <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-ink-soft/55 mb-7 tabular-nums">
+                    §&nbsp;{String(ci + 1).padStart(2, '0')} — {category.title}
+                  </p>
+                  <ul className="border-t border-ink/15">
+                    {category.items.map((item) => {
+                      const i = qIndex++
+                      return <FAQAccordionItem key={item.question} item={item} index={i} />
+                    })}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -150,5 +179,5 @@ export default function FAQPage() {
       </main>
       <Footer />
     </>
-  );
+  )
 }

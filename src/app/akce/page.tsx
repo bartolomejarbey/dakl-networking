@@ -2,38 +2,57 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Container } from '@/components/layout/Container'
 import { EventList } from '@/components/event/EventList'
+import { GrainOverlay } from '@/components/ui/GrainOverlay'
+import { Marquee } from '@/components/ui/Marquee'
+import Link from 'next/link'
 import type { Event } from '@/types/database'
 
-const baseEvent: Event = {
-  id: '1',
-  slug: 'kayak-beach-bar',
-  name: 'Neřízený networking na lodi',
-  type: 'lod',
-  starts_at: '2026-04-24T15:00:00+02:00',
-  ends_at: '2026-04-24T23:30:00+02:00',
-  location_name: 'Kayak Beach Bar',
-  location_address: 'Náplavka, Železniční most, Praha 2',
-  location_gps_lat: null,
-  location_gps_lng: null,
-  price_czk: 2290,
-  capacity: 150,
-  short_description:
-    'Loď, jídlo, pití, DJs, beachvolejbal, paddleboardy. Jeden večer, 150 lidí, co něco dělají.',
-  long_description: null,
-  program_json: null,
+const baseEvent = {
   meta_title: null,
   meta_description: null,
   og_image_url: null,
   hero_image_url: null,
-  status: 'published',
-  published_at: new Date().toISOString(),
-  created_at: new Date().toISOString(),
-  updated_at: new Date().toISOString(),
+  long_description: null,
+  program_json: null,
+  location_gps_lat: null,
+  location_gps_lng: null,
+  published_at: null,
+  created_at: '2025-12-01T00:00:00Z',
+  updated_at: '2026-04-25T00:00:00Z',
   created_by: null,
-}
+} as const
 
 const allEvents: Event[] = [
-  baseEvent,
+  {
+    ...baseEvent,
+    id: 'next',
+    slug: 'pripravujeme',
+    name: 'Příští vydání',
+    type: 'jine',
+    starts_at: '2099-01-01T18:00:00+02:00',
+    ends_at: '2099-01-01T23:00:00+02:00',
+    location_name: 'TBA',
+    location_address: 'Praha',
+    price_czk: 0,
+    capacity: 150,
+    short_description: 'Datum oznámíme přihlášeným odběratelům jako prvním.',
+    status: 'draft',
+  },
+  {
+    ...baseEvent,
+    id: '1',
+    slug: 'kayak-beach-bar',
+    name: 'Neřízený networking na lodi',
+    type: 'lod',
+    starts_at: '2026-04-24T15:00:00+02:00',
+    ends_at: '2026-04-24T23:30:00+02:00',
+    location_name: 'Kayak Beach Bar',
+    location_address: 'Náplavka, Železniční most, Praha 2',
+    price_czk: 2290,
+    capacity: 150,
+    short_description: 'Loď, jídlo, pití, DJs, beachvolejbal, paddleboardy. 150 lidí, co něco dělají.',
+    status: 'archived',
+  },
   {
     ...baseEvent,
     id: '2',
@@ -46,6 +65,7 @@ const allEvents: Event[] = [
     location_address: 'Praha',
     price_czk: 2490,
     capacity: 100,
+    short_description: null,
     status: 'archived',
   },
   {
@@ -60,28 +80,123 @@ const allEvents: Event[] = [
     location_address: 'Praha',
     price_czk: 1890,
     capacity: 60,
+    short_description: null,
     status: 'archived',
   },
 ]
 
+const tickerItems = [
+  '47 akcí od 2023',
+  '6 850+ hostů',
+  '94% průměrná obsazenost',
+  'Praha · Vltava · Náplavka',
+  'Ročník IV · Vydání 04',
+]
+
 export default function AkcePage() {
+  const upcoming = allEvents.find((e) => e.status === 'published' || e.status === 'draft')
+
   return (
     <>
-      <Navbar />
+      <Navbar ctaHref="/#odber" ctaLabel="Odebírat" />
       <main>
-        <section className="bg-forest pt-[140px] pb-20 lg:pb-28">
-          <Container>
-            <h1 className="font-serif text-cream text-[clamp(40px,5.2vw,72px)] leading-[1.08] max-w-[900px]">
-              Co se děje. Co bylo. Kam přijdeš.
+        {/* Top zone — between issues */}
+        <section className="relative bg-forest-deep text-cream pt-32 lg:pt-40 pb-20 lg:pb-28 overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 65% 55% at 25% 30%, rgba(30, 139, 133, 0.16), transparent 60%)',
+            }}
+          />
+          <GrainOverlay opacity={0.04} />
+
+          <Container className="relative z-10">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between mb-12 lg:mb-16">
+              <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange">
+                §&nbsp;Index — Vydání
+              </p>
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-cream/55">
+                Pražský čtvrtletník · Ročník IV · 2026
+              </p>
+            </div>
+
+            <h1
+              className="font-serif text-cream leading-[0.98] tracking-[-0.022em] text-[clamp(48px,9vw,160px)] mb-12"
+              style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
+            >
+              {upcoming?.status === 'published' ? (
+                <>
+                  Nadcházející
+                  <span className="block italic text-cream/85 pl-[0.4em]">
+                    vydání.
+                  </span>
+                </>
+              ) : (
+                <>
+                  Mezi vydáními.
+                  <span className="block italic text-cream/85 pl-[0.4em]">
+                    Posádka přebírá.
+                  </span>
+                </>
+              )}
             </h1>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/70 mt-6">
-              DaKl Networking · Praha · 2026
+
+            <p className="font-serif italic text-[clamp(20px,2.4vw,28px)] leading-[1.4] text-cream/75 max-w-[640px]">
+              {upcoming?.status === 'published'
+                ? 'Detail vydání níž.'
+                : 'Příští akce se připravuje. Datum oznámíme přihlášeným odběratelům jako prvním. Mezitím můžeš procházet archiv všech vydání.'}
             </p>
+
+            <Link
+              href="/#odber"
+              className="group mt-10 inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] uppercase text-cream border-b border-orange pb-1 hover:text-orange transition-colors"
+            >
+              Přihlásit se k odběru
+              <span className="transition-transform duration-300 ease-editorial group-hover:translate-x-1.5" aria-hidden>
+                &rarr;
+              </span>
+            </Link>
           </Container>
         </section>
 
-        <section className="bg-cream py-16 lg:py-24">
+        {/* Marquee divider */}
+        <div className="border-y border-ink/15 bg-cream py-4">
+          <Marquee speed="slow" copies={3} separator={<span aria-hidden>·</span>}>
+            {tickerItems.map((item, i) => (
+              <span
+                key={i}
+                className="px-7 font-mono text-[11px] tracking-[0.22em] uppercase text-ink-soft whitespace-nowrap"
+              >
+                {item}
+              </span>
+            ))}
+          </Marquee>
+        </div>
+
+        {/* Bottom zone — archive */}
+        <section className="bg-cream text-ink py-20 lg:py-28">
           <Container>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between mb-12">
+              <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange">
+                §&nbsp;Archiv vydání
+              </p>
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/60 tabular-nums">
+                Celkem {allEvents.length} záznamů
+              </p>
+            </div>
+
+            <h2
+              className="font-serif text-ink leading-[1] tracking-[-0.02em] text-[clamp(36px,5vw,72px)] mb-14 lg:mb-16"
+              style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
+            >
+              Co bylo. Co bude.
+              <span className="block italic text-ink-soft pl-[0.4em]">
+                Co stojí v archivu.
+              </span>
+            </h2>
+
             <EventList events={allEvents} />
           </Container>
         </section>

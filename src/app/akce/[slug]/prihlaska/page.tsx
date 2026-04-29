@@ -1,11 +1,14 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { Container } from '@/components/layout/Container'
 import { CheckoutWizard } from '@/components/checkout/CheckoutWizard'
+import { GrainOverlay } from '@/components/ui/GrainOverlay'
 import type { Event } from '@/types/database'
 import type { Metadata } from 'next'
 
-const HARDCODED_EVENT: Event = {
+const KAYAK_EVENT: Event = {
   id: '1',
   slug: 'kayak-beach-bar',
   name: 'Neřízený networking na lodi',
@@ -18,31 +21,25 @@ const HARDCODED_EVENT: Event = {
   location_gps_lng: 14.4148,
   price_czk: 2290,
   capacity: 150,
-  hero_image_url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1400&q=80',
-  short_description: 'Neformátní networking pro podnikatele na lodi. Jídlo, pití, DJs, aktivity — vše v ceně.',
-  long_description: 'Celý večer na lodi. Žádné přednášky, žádný program, který tě nutí sedět. Volný pohyb, jídlo a pití po celou dobu, DJs, paddleboardy, beachvolejbal. Potkej lidi, co něco dělají.',
-  program_json: [
-    { time: '15:00', title: 'Příchod a registrace', description: 'Check-in, uvítací drink' },
-    { time: '15:30', title: 'Jídlo a pití', description: 'Bufet po celou dobu akce' },
-    { time: '16:00', title: 'DJs', description: 'Od chill beatů po taneční set' },
-    { time: '16:30', title: 'Aktivity', description: 'Paddleboardy, kajaky, beachvolejbal' },
-    { time: '20:00', title: 'Networking peak', description: 'Hlavní část večera' },
-    { time: '23:30', title: 'Konec', description: 'Poslední drink a rozloučení' },
-  ],
-  meta_title: 'Neřízený networking na lodi | DaKl Networking',
-  meta_description: 'Neformátní networking pro podnikatele na lodi Kayak Beach Bar. 24. dubna 2026, Praha.',
+  hero_image_url: '/images/kaybeach.jpg',
+  short_description:
+    'Neformátní networking pro podnikatele na lodi. Jídlo, pití, DJs, aktivity — vše v ceně.',
+  long_description: null,
+  program_json: null,
+  meta_title: 'Přihláška | DaKl Networking',
+  meta_description: 'Přihláška na akci DaKl Networking',
   og_image_url: null,
-  status: 'published',
+  status: 'archived',
   published_at: '2026-03-01T10:00:00+01:00',
   created_at: '2026-03-01T10:00:00+01:00',
-  updated_at: '2026-03-01T10:00:00+01:00',
+  updated_at: '2026-04-25T00:00:00Z',
   created_by: null,
 }
 
-const SOLD_COUNT = 47
+const SOLD_COUNT = 150
 
 export const metadata: Metadata = {
-  title: 'Přihláška | Kayak Beach Bar | DaKl Networking',
+  title: 'Přihláška | DaKl Networking',
 }
 
 interface PageProps {
@@ -56,14 +53,56 @@ export default async function CheckoutPage({ params }: PageProps) {
     notFound()
   }
 
+  const event = KAYAK_EVENT
+  const isArchived = event.status === 'archived'
+
   return (
     <>
-      <Navbar solid
-        ctaHref={`/akce/${HARDCODED_EVENT.slug}/prihlaska`}
-        ctaLabel="Přihlásit se"
-      />
+      <Navbar solid ctaHref="/#odber" ctaLabel="Odebírat" />
       <main>
-        <CheckoutWizard event={HARDCODED_EVENT} soldCount={SOLD_COUNT} />
+        {isArchived ? (
+          <section className="relative bg-cream text-ink pt-32 lg:pt-40 pb-32 min-h-[80vh] grain grain-light">
+            <Container>
+              <div className="max-w-[720px] mx-auto text-center">
+                <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange mb-10">
+                  §&nbsp;Přihláška — Uzavřená
+                </p>
+                <h1
+                  className="font-serif italic text-ink leading-[0.96] tracking-[-0.022em] text-[clamp(48px,8vw,128px)] mb-7"
+                  style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
+                >
+                  Tohle vydání
+                  <span className="block">už proběhlo.</span>
+                </h1>
+                <p className="font-serif italic text-[clamp(20px,2.6vw,28px)] leading-[1.45] text-ink-soft mb-12 max-w-[560px] mx-auto">
+                  Děkujeme všem, kdo dorazili. Příští vydání oznámíme přihlášeným odběratelům jako prvním.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
+                  <Link
+                    href="/#odber"
+                    className="group inline-flex items-center justify-center gap-3 bg-orange hover:bg-orange-dark text-cream font-mono text-[11px] tracking-[0.22em] uppercase font-semibold px-7 py-4 rounded-[1px] border-2 border-orange transition-colors duration-300"
+                  >
+                    Buď u dalšího
+                    <span className="transition-transform duration-300 ease-editorial group-hover:translate-x-1" aria-hidden>
+                      &rarr;
+                    </span>
+                  </Link>
+                  <Link
+                    href="/akce"
+                    className="group inline-flex items-center justify-center gap-3 border-2 border-ink/30 hover:border-ink text-ink font-mono text-[11px] tracking-[0.22em] uppercase font-semibold px-7 py-4 rounded-[1px] transition-colors duration-300"
+                  >
+                    Otevřít archiv
+                    <span className="transition-transform duration-300 ease-editorial group-hover:translate-x-1" aria-hidden>
+                      &rarr;
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </Container>
+          </section>
+        ) : (
+          <CheckoutWizard event={event} soldCount={SOLD_COUNT} />
+        )}
       </main>
       <Footer />
     </>

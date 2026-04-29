@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-type LabelSize = 'sm' | 'md' | 'default'
+type LabelSize = 'sm' | 'md' | 'default' | 'folio'
 
 interface LabelProps {
   children: React.ReactNode
@@ -13,6 +13,7 @@ const sizeStyles: Record<LabelSize, string> = {
   sm: 'font-mono text-[10px] tracking-[0.18em] uppercase',
   default: 'font-mono text-[11px] tracking-[0.14em] uppercase font-medium',
   md: 'font-mono text-[13px] tracking-[0.1em] uppercase font-medium',
+  folio: 'font-mono text-[11px] tracking-[0.22em] uppercase',
 }
 
 export function Label({ children, size = 'default', className, as: Tag = 'span' }: LabelProps) {

@@ -1,121 +1,185 @@
-import { notFound } from 'next/navigation';
-import { Check } from 'lucide-react';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { Container } from '@/components/layout/Container';
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { Container } from '@/components/layout/Container'
 
 interface PageProps {
-  params: { slug: string };
-  searchParams: { order?: string };
+  params: { slug: string }
+  searchParams: { order?: string }
+}
+
+function nowStamp(): string {
+  const now = new Date()
+  const dd = String(now.getDate()).padStart(2, '0')
+  const mm = String(now.getMonth() + 1).padStart(2, '0')
+  const yy = String(now.getFullYear()).slice(2)
+  const hh = String(now.getHours()).padStart(2, '0')
+  const mi = String(now.getMinutes()).padStart(2, '0')
+  return `${dd}.${mm}.${yy} · ${hh}:${mi}`
 }
 
 export default function PotvrzeniPage({ params, searchParams }: PageProps) {
   if (params.slug !== 'kayak-beach-bar') {
-    notFound();
+    notFound()
   }
 
-  const orderNumber = searchParams.order || 'CN-2026-XXXX';
+  const orderNumber = searchParams.order || 'CN-2026-XXXX'
+
+  const checklist = [
+    'Do 15 minut dorazí e-mail s fakturou',
+    'Den před akcí ti pošleme připomínku',
+    'Když se nemůžeš dostavit, dej vědět 48 h předem',
+  ]
 
   return (
     <>
-      <Navbar />
+      <Navbar solid />
       <main>
-        {/* Hero section */}
-        <section className="bg-forest pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
+        <section className="relative bg-cream text-ink pt-32 lg:pt-40 pb-32 grain grain-light">
           <Container>
-            <div className="flex flex-col items-center text-center">
-              <div className="w-[80px] h-[80px] rounded-full bg-cream/20 flex items-center justify-center mb-8">
-                <Check className="w-[48px] h-[48px] text-cream" strokeWidth={2.5} />
-              </div>
-              <h1 className="font-serif text-cream text-[clamp(40px,5.2vw,72px)] leading-tight mb-6">
-                Hotovo. Vidíme se na akci.
-              </h1>
-              <p className="font-mono text-cream/80 text-sm tracking-wide">
-                Kayak Beach Bar · 24.04.2026 · 15:00–23:30
-              </p>
-            </div>
-          </Container>
-        </section>
-
-        {/* Cards section */}
-        <section className="bg-cream pt-[140px] pb-[140px] max-md:pt-[100px] max-md:pb-[100px]">
-          <Container>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-              {/* Card 1: Calendar */}
-              <div className="bg-white rounded-[2px] p-8 shadow-sm">
-                <h2 className="font-serif text-ink text-2xl mb-4">Přidat do kalendáře</h2>
-                <p className="font-sans text-ink-soft text-base mb-6">
-                  Přidej si akci do kalendáře, ať na ni nezapomeneš. Stáhne se ti .ics soubor.
+            {/* Folio header */}
+            <div className="max-w-[720px] mx-auto mb-12">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange">
+                  §&nbsp;Potvrzení přihlášky
                 </p>
-                <button className="inline-flex items-center justify-center px-7 py-4 bg-orange text-cream font-mono text-[13px] uppercase tracking-[0.08em] font-medium rounded-[2px] hover:bg-orange-dark transition-colors">
-                  Stáhnout .ics
-                </button>
-              </div>
-
-              {/* Card 2: Updates */}
-              <div className="bg-white rounded-[2px] p-8 shadow-sm">
-                <h2 className="font-serif text-ink text-2xl mb-4">Sledovat updates</h2>
-                <p className="font-sans text-ink-soft text-base mb-6">
-                  Sleduj nás na sociálních sítích a buď v obraze o novinkách a dalších akcích.
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 tabular-nums">
+                  {nowStamp()}
                 </p>
-                <div className="flex flex-col gap-3">
-                  <a
-                    href="https://instagram.com/daklnetworking"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-forest text-sm hover:underline"
-                  >
-                    → Instagram
-                  </a>
-                  <a
-                    href="https://linkedin.com/company/daklnetworking"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-forest text-sm hover:underline"
-                  >
-                    → LinkedIn
-                  </a>
-                </div>
-              </div>
-
-              {/* Card 3: Referral */}
-              <div className="bg-white rounded-[2px] p-8 shadow-sm">
-                <h2 className="font-serif text-ink text-2xl mb-4">Pozvat přítele</h2>
-                <p className="font-sans text-ink-soft text-base mb-6">
-                  Referral program spouštíme brzy. Pozvi kamaráda a získej slevu na příští akci.
-                </p>
-                <span className="font-mono text-ink-soft text-sm">Již brzy</span>
               </div>
             </div>
 
-            {/* What to expect */}
+            {/* Receipt card */}
             <div className="max-w-[720px] mx-auto">
-              <h2 className="font-serif text-ink text-3xl mb-8">Co očekávat</h2>
-              <ul className="space-y-5">
-                <li className="flex gap-4">
-                  <span className="w-2 h-2 rounded-full bg-orange mt-2.5 shrink-0" />
-                  <p className="font-sans text-ink text-lg">
-                    Do 15 minut dostaneš email s fakturou a detaily
+              <div aria-hidden className="perforation-top h-1 w-full" />
+              <article className="bg-cream border-x border-b border-ink/15 shadow-print">
+                {/* Receipt head */}
+                <header className="px-8 lg:px-12 pt-12 pb-10 border-b border-ink/15 text-center">
+                  <p className="font-mono text-[10px] tracking-[0.26em] uppercase text-ink-soft/55 mb-7">
+                    DaKl Networking · Vydání 04
                   </p>
-                </li>
-                <li className="flex gap-4">
-                  <span className="w-2 h-2 rounded-full bg-orange mt-2.5 shrink-0" />
-                  <p className="font-sans text-ink text-lg">
-                    Den před akcí ti pošleme připomínku
+                  <h1
+                    className="font-serif italic text-ink leading-[0.96] tracking-[-0.022em] text-[clamp(40px,6vw,80px)] mb-5"
+                    style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
+                  >
+                    Hotovo.
+                    <span className="block text-ink-soft/85">Vidíme se na akci.</span>
+                  </h1>
+                  <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-orange tabular-nums">
+                    Objednávka · {orderNumber}
                   </p>
-                </li>
-                <li className="flex gap-4">
-                  <span className="w-2 h-2 rounded-full bg-orange mt-2.5 shrink-0" />
-                  <p className="font-sans text-ink text-lg">
-                    Když se nemůžeš dostavit, dej nám vědět 48h předem
+                </header>
+
+                {/* Receipt body */}
+                <div className="px-8 lg:px-12 py-10 grid grid-cols-1 sm:grid-cols-2 gap-y-7 gap-x-10 border-b border-ink/15">
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 mb-2">
+                      Akce
+                    </p>
+                    <p className="font-serif italic text-[20px] lg:text-[22px] leading-[1.2] text-ink">
+                      Neřízený networking na lodi
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 mb-2">
+                      Datum
+                    </p>
+                    <p className="font-serif italic text-[20px] lg:text-[22px] leading-[1.2] text-ink">
+                      pátek 24. dubna 2026
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 mb-2">
+                      Čas
+                    </p>
+                    <p className="font-mono text-[18px] tabular-nums text-ink">
+                      15:00–23:30
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 mb-2">
+                      Místo
+                    </p>
+                    <p className="font-serif italic text-[20px] lg:text-[22px] leading-[1.2] text-ink">
+                      Kayak Beach Bar · Náplavka
+                    </p>
+                  </div>
+                </div>
+
+                {/* Checklist */}
+                <div className="px-8 lg:px-12 py-10">
+                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-orange mb-7">
+                    §&nbsp;Co bude dál
                   </p>
-                </li>
-              </ul>
+                  <ol className="space-y-5">
+                    {checklist.map((item, i) => (
+                      <li key={i} className="flex items-baseline gap-5">
+                        <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-ink-soft/45 shrink-0 tabular-nums">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <p className="font-serif text-[18px] lg:text-[20px] leading-[1.45] text-ink">
+                          {item}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                {/* Footer signature */}
+                <footer className="px-8 lg:px-12 py-7 border-t border-ink/15 bg-ink/[0.02] flex flex-col sm:flex-row items-baseline justify-between gap-3">
+                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55">
+                    Tištěno digitálně v Praze · MMXXVI
+                  </p>
+                  <p className="font-serif italic text-[16px] text-ink">
+                    — David Kladišovský
+                  </p>
+                </footer>
+              </article>
+              <div aria-hidden className="perforation-bottom h-1 w-full" />
+            </div>
+
+            {/* Side links */}
+            <div className="max-w-[720px] mx-auto mt-14 grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {[
+                { label: 'Kalendář', href: '#', note: 'Stáhnout .ics — pošleme e-mailem' },
+                { label: 'Instagram', href: 'https://instagram.com/daklnetworking', note: '@daklnetworking' },
+                { label: 'LinkedIn', href: 'https://linkedin.com/company/daklnetworking', note: 'DaKl Networking' },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="block group"
+                >
+                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/55 mb-2">
+                    {item.label}
+                  </p>
+                  <p className="font-serif italic text-[18px] leading-[1.3] text-ink group-hover:text-orange transition-colors">
+                    {item.note}
+                  </p>
+                  <span className="inline-block mt-2 font-mono text-[10px] tracking-[0.22em] uppercase text-orange group-hover:translate-x-1 transition-transform duration-300 ease-editorial">
+                    &rarr;
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            {/* Back link */}
+            <div className="text-center mt-16">
+              <Link
+                href="/"
+                className="group inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] uppercase text-ink-soft hover:text-ink transition-colors"
+              >
+                <span aria-hidden className="transition-transform duration-300 ease-editorial group-hover:-translate-x-1">&larr;</span>
+                Zpět na obálku
+              </Link>
             </div>
           </Container>
         </section>
       </main>
       <Footer />
     </>
-  );
+  )
 }
