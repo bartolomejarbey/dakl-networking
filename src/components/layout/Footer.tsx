@@ -131,7 +131,17 @@ export function Footer() {
 
         {/* Colophon line */}
         <div className="mt-20 pt-6 border-t border-cream/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 font-mono text-[10px] tracking-[0.18em] uppercase text-cream/40">
-          <span>© MMXXVI · DaKl Networking · Praha</span>
+          <span className="inline-flex items-center gap-[0.32em]">
+            <span>© MMXXVI</span>
+            <Link
+              href="/admin/login"
+              aria-label="Privátní vstup"
+              className="inline-block w-4 h-4 -my-1 text-center leading-[1rem] text-cream/40 hover:text-orange transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-orange focus-visible:outline-offset-2"
+            >
+              ·
+            </Link>
+            <span>DaKl Networking · Praha</span>
+          </span>
           <span>Žádný marketing. Jen pozvánka.</span>
         </div>
       </Container>
