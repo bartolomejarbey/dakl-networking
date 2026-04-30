@@ -4,78 +4,63 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Container } from '@/components/layout/Container'
 import { CheckoutWizard } from '@/components/checkout/CheckoutWizard'
-import { GrainOverlay } from '@/components/ui/GrainOverlay'
-import type { Event } from '@/types/database'
+import { getEventBySlug } from '@/lib/events/queries'
 import type { Metadata } from 'next'
 
-const KAYAK_EVENT: Event = {
-  id: '1',
-  slug: 'kayak-beach-bar',
-  name: 'Neřízený networking na lodi',
-  type: 'lod',
-  starts_at: '2026-04-24T15:00:00+02:00',
-  ends_at: '2026-04-24T23:30:00+02:00',
-  location_name: 'Kayak Beach Bar',
-  location_address: 'Náplavka, Železniční most, Praha 2',
-  location_gps_lat: 50.0693,
-  location_gps_lng: 14.4148,
-  price_czk: 2290,
-  capacity: 150,
-  hero_image_url: '/images/kaybeach.jpg',
-  short_description:
-    'Neformátní networking pro podnikatele na lodi. Jídlo, pití, DJs, aktivity — vše v ceně.',
-  long_description: null,
-  program_json: null,
-  meta_title: 'Přihláška | DaKl Networking',
-  meta_description: 'Přihláška na akci DaKl Networking',
-  og_image_url: null,
-  status: 'archived',
-  published_at: '2026-03-01T10:00:00+01:00',
-  created_at: '2026-03-01T10:00:00+01:00',
-  updated_at: '2026-04-25T00:00:00Z',
-  created_by: null,
-}
-
-const SOLD_COUNT = 150
-
-export const metadata: Metadata = {
-  title: 'Přihláška | DaKl Networking',
-}
+export const dynamic = 'force-dynamic'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
+export const metadata: Metadata = {
+  title: 'Přihláška | DaKl Networking',
+  robots: { index: false, follow: false },
+}
+
 export default async function CheckoutPage({ params }: PageProps) {
   const { slug } = await params
+  const event = await getEventBySlug(slug)
 
-  if (slug !== 'kayak-beach-bar') {
+  if (!event) {
     notFound()
   }
 
-  const event = KAYAK_EVENT
-  const isArchived = event.status === 'archived'
+  const isOpen = event.status === 'published'
 
   return (
     <>
       <Navbar solid ctaHref="/#odber" ctaLabel="Odebírat" />
       <main>
-        {isArchived ? (
+        {isOpen ? (
+          <CheckoutWizard event={event} />
+        ) : (
           <section className="relative bg-cream text-ink pt-32 lg:pt-40 pb-32 min-h-[80vh] grain grain-light">
             <Container>
               <div className="max-w-[720px] mx-auto text-center">
                 <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-orange mb-10">
-                  §&nbsp;Přihláška — Uzavřená
+                  §&nbsp;Přihláška — {event.status === 'archived' ? 'Uzavřená' : 'Nedostupná'}
                 </p>
                 <h1
                   className="font-serif italic text-ink leading-[0.96] tracking-[-0.022em] text-[clamp(48px,8vw,128px)] mb-7"
                   style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
                 >
-                  Tohle vydání
-                  <span className="block">už proběhlo.</span>
+                  {event.status === 'archived' ? (
+                    <>
+                      Tohle vydání
+                      <span className="block">už proběhlo.</span>
+                    </>
+                  ) : (
+                    <>
+                      Přihlášky ještě
+                      <span className="block">nejsou otevřené.</span>
+                    </>
+                  )}
                 </h1>
                 <p className="font-serif italic text-[clamp(20px,2.6vw,28px)] leading-[1.45] text-ink-soft mb-12 max-w-[560px] mx-auto">
-                  Děkujeme všem, kdo dorazili. Příští vydání oznámíme přihlášeným odběratelům jako prvním.
+                  {event.status === 'archived'
+                    ? 'Děkujeme všem, kdo dorazili. Příští vydání oznámíme přihlášeným odběratelům jako prvním.'
+                    : 'Pozvánku pošleme přihlášeným odběratelům jako prvním.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
                   <Link
@@ -100,8 +85,6 @@ export default async function CheckoutPage({ params }: PageProps) {
               </div>
             </Container>
           </section>
-        ) : (
-          <CheckoutWizard event={event} soldCount={SOLD_COUNT} />
         )}
       </main>
       <Footer />

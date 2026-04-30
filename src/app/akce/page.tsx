@@ -1,89 +1,13 @@
+import Link from 'next/link'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Container } from '@/components/layout/Container'
 import { EventList } from '@/components/event/EventList'
 import { GrainOverlay } from '@/components/ui/GrainOverlay'
 import { Marquee } from '@/components/ui/Marquee'
-import Link from 'next/link'
-import type { Event } from '@/types/database'
+import { listPublicEvents } from '@/lib/events/queries'
 
-const baseEvent = {
-  meta_title: null,
-  meta_description: null,
-  og_image_url: null,
-  hero_image_url: null,
-  long_description: null,
-  program_json: null,
-  location_gps_lat: null,
-  location_gps_lng: null,
-  published_at: null,
-  created_at: '2025-12-01T00:00:00Z',
-  updated_at: '2026-04-25T00:00:00Z',
-  created_by: null,
-} as const
-
-const allEvents: Event[] = [
-  {
-    ...baseEvent,
-    id: 'next',
-    slug: 'pripravujeme',
-    name: 'Příští vydání',
-    type: 'jine',
-    starts_at: '2099-01-01T18:00:00+02:00',
-    ends_at: '2099-01-01T23:00:00+02:00',
-    location_name: 'TBA',
-    location_address: 'Praha',
-    price_czk: 0,
-    capacity: 150,
-    short_description: 'Datum oznámíme přihlášeným odběratelům jako prvním.',
-    status: 'draft',
-  },
-  {
-    ...baseEvent,
-    id: '1',
-    slug: 'kayak-beach-bar',
-    name: 'Neřízený networking na lodi',
-    type: 'lod',
-    starts_at: '2026-04-24T15:00:00+02:00',
-    ends_at: '2026-04-24T23:30:00+02:00',
-    location_name: 'Kayak Beach Bar',
-    location_address: 'Náplavka, Železniční most, Praha 2',
-    price_czk: 2290,
-    capacity: 150,
-    short_description: 'Loď, jídlo, pití, DJs, beachvolejbal, paddleboardy. 150 lidí, co něco dělají.',
-    status: 'archived',
-  },
-  {
-    ...baseEvent,
-    id: '2',
-    slug: 'ochutnavka-morskych-plodu',
-    name: 'Ochutnávka mořských plodů',
-    type: 'more',
-    starts_at: '2026-03-23T18:00:00+01:00',
-    ends_at: '2026-03-23T23:00:00+01:00',
-    location_name: 'Praha',
-    location_address: 'Praha',
-    price_czk: 2490,
-    capacity: 100,
-    short_description: null,
-    status: 'archived',
-  },
-  {
-    ...baseEvent,
-    id: '3',
-    slug: 'degustace-vina-wood-and-steak',
-    name: 'Degustace vína',
-    type: 'vino',
-    starts_at: '2026-02-26T18:00:00+01:00',
-    ends_at: '2026-02-26T23:00:00+01:00',
-    location_name: 'Wood and Steak',
-    location_address: 'Praha',
-    price_czk: 1890,
-    capacity: 60,
-    short_description: null,
-    status: 'archived',
-  },
-]
+export const revalidate = 60
 
 const tickerItems = [
   '47 akcí od 2023',
@@ -93,14 +17,14 @@ const tickerItems = [
   'Ročník IV · Vydání 04',
 ]
 
-export default function AkcePage() {
-  const upcoming = allEvents.find((e) => e.status === 'published' || e.status === 'draft')
+export default async function AkcePage() {
+  const events = await listPublicEvents()
+  const upcoming = events.find((e) => e.status === 'published' || e.status === 'draft')
 
   return (
     <>
       <Navbar ctaHref="/#odber" ctaLabel="Odebírat" />
       <main>
-        {/* Top zone — between issues */}
         <section className="relative bg-forest-deep text-cream pt-32 lg:pt-40 pb-20 lg:pb-28 overflow-hidden">
           <div
             aria-hidden
@@ -129,16 +53,12 @@ export default function AkcePage() {
               {upcoming?.status === 'published' ? (
                 <>
                   Nadcházející
-                  <span className="block italic text-cream/85 pl-[0.4em]">
-                    vydání.
-                  </span>
+                  <span className="block italic text-cream/85 pl-[0.4em]">vydání.</span>
                 </>
               ) : (
                 <>
                   Mezi vydáními.
-                  <span className="block italic text-cream/85 pl-[0.4em]">
-                    Posádka přebírá.
-                  </span>
+                  <span className="block italic text-cream/85 pl-[0.4em]">Posádka přebírá.</span>
                 </>
               )}
             </h1>
@@ -161,7 +81,6 @@ export default function AkcePage() {
           </Container>
         </section>
 
-        {/* Marquee divider */}
         <div className="border-y border-ink/15 bg-cream py-4">
           <Marquee speed="slow" copies={3} separator={<span aria-hidden>·</span>}>
             {tickerItems.map((item, i) => (
@@ -175,7 +94,6 @@ export default function AkcePage() {
           </Marquee>
         </div>
 
-        {/* Bottom zone — archive */}
         <section className="bg-cream text-ink py-20 lg:py-28">
           <Container>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between mb-12">
@@ -183,7 +101,7 @@ export default function AkcePage() {
                 §&nbsp;Archiv vydání
               </p>
               <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink-soft/60 tabular-nums">
-                Celkem {allEvents.length} záznamů
+                Celkem {events.length} záznamů
               </p>
             </div>
 
@@ -192,12 +110,10 @@ export default function AkcePage() {
               style={{ paddingTop: '0.06em', paddingBottom: '0.06em' }}
             >
               Co bylo. Co bude.
-              <span className="block italic text-ink-soft pl-[0.4em]">
-                Co stojí v archivu.
-              </span>
+              <span className="block italic text-ink-soft pl-[0.4em]">Co stojí v archivu.</span>
             </h2>
 
-            <EventList events={allEvents} />
+            <EventList events={events} />
           </Container>
         </section>
       </main>

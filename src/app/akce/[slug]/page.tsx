@@ -7,52 +7,51 @@ import { EventProgram } from '@/components/event/EventProgram'
 import { EventLocation } from '@/components/event/EventLocation'
 import { EventFAQ } from '@/components/event/EventFAQ'
 import { EventCTA } from '@/components/event/EventCTA'
-import type { Event } from '@/types/database'
+import { EventJsonLd } from '@/components/seo/EventJsonLd'
+import { getEventBySlug } from '@/lib/events/queries'
+import { createAdminClient } from '@/lib/supabase/admin'
+import type { Metadata } from 'next'
+import type { FAQ } from '@/types/database'
 
-const baseEvent = {
-  long_description:
-    'Celý večer na lodi. Žádné přednášky, žádný program, který tě nutí sedět. Volný pohyb, jídlo a pití po celou dobu, DJs, paddleboardy, beachvolejbal. Potkej lidi, co něco dělají.',
-  meta_title: 'Neřízený networking na lodi | DaKl Networking',
-  meta_description: 'Networking pro podnikatele na lodi Kayak Beach Bar.',
-  og_image_url: null,
-  published_at: '2026-03-01T10:00:00+01:00',
-  created_at: '2026-03-01T10:00:00+01:00',
-  updated_at: '2026-04-25T00:00:00Z',
-  created_by: null,
+export const revalidate = 60
+
+interface PageProps {
+  params: Promise<{ slug: string }>
 }
 
-const KAYAK_EVENT: Event = {
-  ...baseEvent,
-  id: '1',
-  slug: 'kayak-beach-bar',
-  name: 'Neřízený networking na lodi',
-  type: 'lod',
-  starts_at: '2026-04-24T15:00:00+02:00',
-  ends_at: '2026-04-24T23:30:00+02:00',
-  location_name: 'Kayak Beach Bar',
-  location_address: 'Náplavka, Železniční most, Praha 2',
-  location_gps_lat: 50.0693,
-  location_gps_lng: 14.4148,
-  price_czk: 2290,
-  capacity: 150,
-  hero_image_url: '/images/kaybeach.jpg',
-  short_description:
-    'Neformátní networking pro podnikatele na lodi. Jídlo, pití, DJs, aktivity — vše v ceně.',
-  program_json: [
-    { time: '15:00', title: 'Příchod a registrace', description: 'Check-in, uvítací drink' },
-    { time: '15:30', title: 'Jídlo a pití', description: 'Bufet po celou dobu akce' },
-    { time: '16:00', title: 'DJs', description: 'Od chill beatů po taneční set' },
-    { time: '16:30', title: 'Aktivity', description: 'Paddleboardy, kajaky, beachvolejbal' },
-    { time: '20:00', title: 'Networking peak', description: 'Hlavní část večera' },
-    { time: '23:30', title: 'Konec', description: 'Poslední drink a rozloučení' },
-  ],
-  status: 'archived',
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const event = await getEventBySlug(slug)
+  if (!event) return { title: 'Akce nenalezena' }
+  return {
+    title: event.meta_title ?? event.name,
+    description:
+      event.meta_description ??
+      event.short_description ??
+      'DaKl Networking · Setkání podnikatelů, co něco dělají.',
+    openGraph: {
+      title: event.name,
+      description: event.short_description ?? undefined,
+      images: event.og_image_url
+        ? [{ url: event.og_image_url, width: 1200, height: 630 }]
+        : event.hero_image_url
+          ? [{ url: event.hero_image_url }]
+          : undefined,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: event.name,
+      description: event.short_description ?? undefined,
+    },
+  }
 }
 
-const KAYAK_FAQS = [
+const KAYAK_FAQS: Pick<FAQ, 'question' | 'answer'>[] = [
   {
     question: 'Co bylo zahrnuto v ceně?',
-    answer: 'Všechno. Jídlo, pití (alkoholické i nealkoholické), aktivity, vstup. Žádné domlouvání u baru.',
+    answer:
+      'Všechno. Jídlo, pití (alkoholické i nealkoholické), aktivity, vstup. Žádné domlouvání u baru.',
   },
   {
     question: 'Jaký byl dress code?',
@@ -60,28 +59,48 @@ const KAYAK_FAQS = [
   },
   {
     question: 'Kdy bude další akce?',
-    answer: 'Datum oznámíme přihlášeným odběratelům jako prvním. Přihlas se na homepage.',
+    answer:
+      'Datum oznámíme přihlášeným odběratelům jako prvním. Přihlas se na homepage.',
   },
   {
     question: 'Můžu se podívat na fotky a zápis?',
-    answer: 'Pracujeme na zápisu z lodi. Pošleme ho přihlášeným odběratelům spolu s pozvánkou na další vydání.',
+    answer:
+      'Pracujeme na zápisu z lodi. Pošleme ho přihlášeným odběratelům spolu s pozvánkou na další vydání.',
   },
 ]
 
-const SOLD_COUNT = 150
+async function fetchFaqs(eventId: string, slug: string) {
+  const supabase = createAdminClient()
+  const { data } = await supabase
+    .from('faqs')
+    .select('question, answer, sort_order')
+    .or(`event_id.eq.${eventId},event_id.is.null`)
+    .order('sort_order', { ascending: true })
+  const dbFaqs = (data ?? []) as Array<Pick<FAQ, 'question' | 'answer'>>
+  if (dbFaqs.length > 0) return dbFaqs
+  if (slug === 'kayak-beach-bar') return KAYAK_FAQS
+  return []
+}
 
-interface PageProps {
-  params: Promise<{ slug: string }>
+async function fetchSoldCount(eventId: string): Promise<number> {
+  const supabase = createAdminClient()
+  const { count } = await supabase
+    .from('orders')
+    .select('id', { count: 'exact', head: true })
+    .eq('event_id', eventId)
+    .eq('payment_status', 'paid')
+  return count ?? 0
 }
 
 export default async function EventDetailPage({ params }: PageProps) {
   const { slug } = await params
+  const event = await getEventBySlug(slug)
 
-  if (slug !== 'kayak-beach-bar') {
+  if (!event) {
     notFound()
   }
 
-  const event = KAYAK_EVENT
+  const [faqs, soldCount] = await Promise.all([fetchFaqs(event.id, slug), fetchSoldCount(event.id)])
 
   return (
     <>
@@ -89,10 +108,10 @@ export default async function EventDetailPage({ params }: PageProps) {
         ctaHref={event.status === 'published' ? `/akce/${event.slug}/prihlaska` : '/#odber'}
         ctaLabel={event.status === 'published' ? 'Přihlásit' : 'Odebírat'}
       />
+      <EventJsonLd event={event} />
       <main>
-        <EventHero event={event} soldCount={SOLD_COUNT} />
+        <EventHero event={event} soldCount={soldCount} />
 
-        {/* Editor's letter — magazine spread feel */}
         {event.long_description && (
           <section className="bg-cream text-ink py-24 lg:py-32">
             <Container>
@@ -111,10 +130,12 @@ export default async function EventDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {event.program_json && <EventProgram program={event.program_json} />}
+        {event.program_json && Array.isArray(event.program_json) && event.program_json.length > 0 && (
+          <EventProgram program={event.program_json} />
+        )}
         <EventLocation event={event} />
-        <EventFAQ faqs={KAYAK_FAQS} />
-        <EventCTA event={event} soldCount={SOLD_COUNT} />
+        {faqs.length > 0 && <EventFAQ faqs={faqs} />}
+        <EventCTA event={event} soldCount={soldCount} />
       </main>
       <Footer />
     </>

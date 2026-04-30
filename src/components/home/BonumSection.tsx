@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Container } from '@/components/layout/Container'
+import { BrushAccent } from '@/components/ui/BrushAccent'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -57,7 +58,7 @@ export function BonumSection() {
             >
               Benefity pro firmy,
               <span className="block italic text-ink-soft pl-[0.4em]">
-                které rostou nejrychleji v ČR.
+                které <BrushAccent variant="teal">rostou</BrushAccent> nejrychleji v ČR.
               </span>
             </motion.h2>
 

@@ -149,6 +149,16 @@
   color: var(--orange);
 }
 
+.dropcap-cream::first-letter {
+  font-family: var(--font-instrument-serif), serif;
+  font-style: italic;
+  font-size: 3.8em;
+  line-height: 0.9;
+  float: left;
+  padding: 0.05em 0.14em 0 0;
+  color: var(--orange);
+}
+
 /* Diagonal "PROBĚHLO" / "ARCHIV" stamp utility */
 .stamp-diagonal {
   transform: rotate(-6deg);

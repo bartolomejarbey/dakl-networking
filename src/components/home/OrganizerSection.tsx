@@ -6,6 +6,7 @@ import { Container } from '@/components/layout/Container'
 import { Duotone } from '@/components/ui/Duotone'
 import { CaptionBlock } from '@/components/ui/CaptionBlock'
 import { GrainOverlay } from '@/components/ui/GrainOverlay'
+import { BrushAccent } from '@/components/ui/BrushAccent'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -93,9 +94,10 @@ export function OrganizerSection() {
               transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
               className="space-y-7 text-cream/85 text-[18px] lg:text-[19px] leading-[1.55] max-w-[600px]"
             >
-              <p>
-                DaKl Networking pořádám pro lidi, co něco dělají — vlastníky
-                firem, freelancery, manažery. Bez kafe v zasedačce, bez
+              <p className="dropcap-cream">
+                DaKl Networking pořádám pro lidi, co něco{' '}
+                <BrushAccent variant="teal">dělají</BrushAccent>{' '}
+                — vlastníky firem, freelancery, manažery. Bez kafe v zasedačce, bez
                 prezentací. Loď, dobrá kuchyně, dobré pití, lidi, kteří se
                 baví o byznysu, protože je to baví.
               </p>
